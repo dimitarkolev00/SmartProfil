@@ -1,0 +1,91 @@
+﻿@model  SmartProfil.ViewModels.InputModels.ProductInputModel
+
+@{
+    ViewData["Title"] = "Добави продукт";
+
+    var categories = Model.Categories
+        .Select(x => new SelectListItem(x.Value, x.Key));
+
+    var manufacturers = Model.Manufacturers
+        .Select(x => new SelectListItem(x.Value, x.Key));
+
+    var productMaterialTypes = Model.ProductMaterialTypes
+        .Select(x => new SelectListItem(x.Value, x.Key));
+
+}
+
+<form method="post" class="col-md-6 offset-md-1"
+      enctype="multipart/form-data">
+    <h1 class="alert-success">@this.ViewData["Title"]</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" class="form-control"  asp-items="categories"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span> 
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductMaterialTypeId">Material Type</label>
+        <select asp-for="ProductMaterialTypeId" class="form-control" asp-items="productMaterialTypes" ></select>
+        <span asp-validation-for="ProductMaterialTypeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ManufacturerId">Manufacturer</label>
+        <select asp-for="ManufacturerId" class="form-control" asp-items="manufacturers" ></select>
+        <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Specifications"></label>
+        <textarea asp-for="Specifications" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Specifications" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageSource"></label>
+        <input asp-for="ImageSource" class="form-control" />
+        <span asp-validation-for="ImageSource" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UnitPrice"></label>
+        <input asp-for="UnitPrice" class="form-control" />
+        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UnitsInStock">Units in stock</label>
+        <input asp-for="UnitsInStock" class="form-control" />
+        <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Length"></label>
+        <input asp-for="Length" class="form-control" />
+        <span asp-validation-for="Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Width"></label>
+        <input asp-for="Width" class="form-control" />
+        <span asp-validation-for="Width" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Weight"></label>
+        <input asp-for="Weight" class="form-control" />
+        <span asp-validation-for="Weight" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-success" />
+</form>
+
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial"/>}
+}
