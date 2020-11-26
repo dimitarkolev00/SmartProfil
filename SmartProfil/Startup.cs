@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartProfil.Data;
 using Microsoft.Extensions.Configuration;
@@ -34,7 +35,7 @@ namespace SmartProfil
 
                     options.SignIn.RequireConfirmedAccount = false;
                 })
-                .AddRoles<IdentityRole>()
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IProductService, ProductService>();
@@ -42,8 +43,19 @@ namespace SmartProfil
             services.AddTransient<IManufacturersService, ManufacturersService>();
             services.AddTransient<IProductMaterialTypesService, ProductMaterialTypesService>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }).AddRazorRuntimeCompilation();
+
             services.AddRazorPages();
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
+            //services.AddSingleton(this.configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,7 +63,7 @@ namespace SmartProfil
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
