@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SmartProfil.Data;
-using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
 
 namespace SmartProfil.Services
@@ -20,7 +19,10 @@ namespace SmartProfil.Services
             {
                 x.Id,
                 x.Name
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+            })
+                .OrderBy(x => x.Name)
+                .ToList()
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
     }
 }

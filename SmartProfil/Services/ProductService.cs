@@ -1,6 +1,5 @@
 ﻿using SmartProfil.Data;
 using SmartProfil.Models;
-using SmartProfil.Models.Enum;
 using SmartProfil.Services.Interfaces;
 using SmartProfil.ViewModels.InputModels;
 
