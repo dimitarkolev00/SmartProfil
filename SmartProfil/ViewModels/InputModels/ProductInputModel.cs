@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Intrinsics.X86;
+using Microsoft.AspNetCore.Http;
 
 namespace SmartProfil.ViewModels.InputModels
 {
@@ -22,8 +22,6 @@ namespace SmartProfil.ViewModels.InputModels
 
         public string Specifications { get; set; }
 
-        public string ImageSource { get; set; }
-
         public decimal UnitPrice { get; set; }
 
         public int? UnitsInStock { get; set; }
@@ -34,8 +32,12 @@ namespace SmartProfil.ViewModels.InputModels
 
         public double? Width { get; set; }
 
+        public IEnumerable<IFormFile> Images { get; set; }
+
         public IEnumerable<KeyValuePair<string, string>> Categories { get; set; }
+
         public IEnumerable<KeyValuePair<string, string>> Manufacturers { get; set; }
+
         public IEnumerable<KeyValuePair<string, string>> ProductMaterialTypes { get; set; }
     }
 }

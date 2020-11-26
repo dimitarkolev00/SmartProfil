@@ -9,6 +9,7 @@ namespace SmartProfil.Models
         public Product()
         {
             this.Feedbacks = new HashSet<Feedback>();
+            this.Images = new HashSet<Image>();
         }
 
         public int Id { get; set; }
@@ -22,21 +23,19 @@ namespace SmartProfil.Models
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public int ProductMaterialTypeId { get; set; }
 
-        public ProductMaterialType ProductMaterialType { get; set; }
+        public virtual ProductMaterialType ProductMaterialType { get; set; }
 
         public int ManufacturerId { get; set; }
 
-        public Manufacturer Manufacturer { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
 
         public string Description { get; set; }
 
         public string Specifications { get; set; }
-
-        public string ImageSource { get; set; }
 
         public decimal UnitPrice { get; set; }
 
@@ -48,6 +47,12 @@ namespace SmartProfil.Models
 
         public double? Width { get; set; }
 
+        public string AddedByUserId { get; set; }
+
+        public virtual ApplicationUser AddedByUser { get; set; }
+
         public virtual ICollection<Feedback> Feedbacks { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

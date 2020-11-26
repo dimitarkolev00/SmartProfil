@@ -1,4 +1,9 @@
-﻿using SmartProfil.Data;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using SmartProfil.Data;
 using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
 using SmartProfil.ViewModels.InputModels;
@@ -7,13 +12,16 @@ namespace SmartProfil.Services
 {
     public class ProductService : IProductService
     {
+        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif","jpeg" };
         private readonly ApplicationDbContext db;
+        private readonly IWebHostEnvironment environment;
 
-        public ProductService(ApplicationDbContext db)
+        public ProductService(ApplicationDbContext db, IWebHostEnvironment environment)
         {
             this.db = db;
+            this.environment = environment;
         }
-        public void Add(ProductInputModel productModel)
+        public async Task CreateAsync(ProductInputModel productModel, string userId)
         {
             var product = new Product
             {
@@ -29,11 +37,35 @@ namespace SmartProfil.Services
                 Weight = productModel.Weight,
                 Width = productModel.Width,
                 UnitsInStock = productModel.UnitsInStock,
-                ImageSource = productModel.ImageSource
+                AddedByUserId = userId
             };
 
-            this.db.Products.Add(product);
-            this.db.SaveChanges();
+
+            foreach (var image in productModel.Images)
+            {
+                var extension = Path.GetExtension(image.FileName);
+                var wwwrootPath = this.environment.WebRootPath;
+
+                if (!this.AllowedExtensions.Any(x=>extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension} !");
+                }
+
+                var dbImage = new Image
+                {
+                    AddedByUserId = userId,
+                    Extension = extension
+                };
+
+                product.Images.Add(dbImage);
+
+                var physicalPath = $"{wwwrootPath}/images/products/{dbImage.Id}.{extension}";
+                await using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
+            }
+
+            await this.db.Products.AddAsync(product);
+            await this.db.SaveChangesAsync();
 
         }
     }

@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
 using SmartProfil.ViewModels;
 using SmartProfil.ViewModels.InputModels;
@@ -13,19 +16,22 @@ namespace SmartProfil.Controllers
         private readonly ICategoriesService categoriesService;
         private readonly IManufacturersService manufacturersService;
         private readonly IProductMaterialTypesService productMaterialTypesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public ProductsController(IProductService productService,
             ICategoriesService categoriesService,
             IManufacturersService manufacturersService,
-            IProductMaterialTypesService productMaterialTypesService)
+            IProductMaterialTypesService productMaterialTypesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.productService = productService;
             this.categoriesService = categoriesService;
             this.manufacturersService = manufacturersService;
             this.productMaterialTypesService = productMaterialTypesService;
+            this.userManager = userManager;
         }
 
-        public IActionResult Add()
+        public IActionResult Create()
         {
             var viewModel = new ProductInputModel
             {
@@ -38,7 +44,7 @@ namespace SmartProfil.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(ProductInputModel input)
+        public async Task<IActionResult> Create(ProductInputModel input)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +55,22 @@ namespace SmartProfil.Controllers
                 return this.View(input);
             }
 
-            this.productService.Add(input);
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            try
+            {
+                await this.productService.CreateAsync(input, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+
+                input.Categories = this.categoriesService.GetAllAsKeyValuePairs();
+                input.Manufacturers = this.manufacturersService.GetAllAsKeyValuePairs();
+                input.ProductMaterialTypes = this.productMaterialTypesService.GetAllAsKeyValuePairs();
+
+                return this.View(input);
+            }
 
             return this.Redirect("/");
         }

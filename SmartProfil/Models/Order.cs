@@ -23,6 +23,6 @@ namespace SmartProfil.Models
 
         public decimal TotalPrice { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
