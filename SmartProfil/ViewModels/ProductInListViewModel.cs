@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Linq;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using SmartProfil.AutoMapper;
+using SmartProfil.Models;
 
 namespace SmartProfil.ViewModels
 {
-    public class ProductInListViewModel
+    public class ProductInListViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -21,5 +25,13 @@ namespace SmartProfil.ViewModels
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Product, ProductInListViewModel>()
+                .ForMember(x => x.Image, opt =>
+                    opt.MapFrom(x =>
+                        "/images/products/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using SmartProfil.AutoMapper;
 using SmartProfil.Data;
 using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
@@ -71,22 +72,13 @@ namespace SmartProfil.Services
 
         }
 
-        public IEnumerable<ProductInListViewModel> GetAll(int page, int productsPerPage = 1)
+        public IEnumerable<T> GetAll<T>(int page, int productsPerPage = 1)
         {
             var products = this.db.Products.OrderByDescending(x => x.Id)
-                .Skip((page - 1) * productsPerPage).Take(productsPerPage)
-                .Select(x => new ProductInListViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Model = x.Model,
-                    Description = x.Description,
-                    Manufacturer = x.Manufacturer.Name,
-                    UnitPrice = x.UnitPrice,
-                    CategoryId = x.CategoryId,
-                    CategoryName = x.Category.Name,
-                    Image = "/images/products/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension
-                }).ToList();
+                .Skip((page - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .To<T>()
+                .ToList();
 
             return products;
         }

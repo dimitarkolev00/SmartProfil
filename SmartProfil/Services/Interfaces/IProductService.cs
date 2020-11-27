@@ -9,7 +9,7 @@ namespace SmartProfil.Services.Interfaces
     {
         Task CreateAsync(ProductInputModel productModel, string userId);
 
-        IEnumerable<ProductInListViewModel>GetAll(int page, int productsPerPage = 1);
+        IEnumerable<T>GetAll<T>(int page, int productsPerPage = 1);
 
         int GetCount();
     }

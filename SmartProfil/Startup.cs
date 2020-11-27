@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -7,9 +8,11 @@ using SmartProfil.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SmartProfil.AutoMapper;
 using SmartProfil.Models;
 using SmartProfil.Services;
 using SmartProfil.Services.Interfaces;
+using SmartProfil.ViewModels;
 
 namespace SmartProfil
 {
@@ -60,6 +63,8 @@ namespace SmartProfil
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

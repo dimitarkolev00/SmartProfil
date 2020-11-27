@@ -82,11 +82,12 @@ namespace SmartProfil.Controllers
             }
 
             const int ItemsPerPage = 1;
+
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetCount(),
-                Products = this.productService.GetAll(id, ItemsPerPage),
+                Products = this.productService.GetAll<ProductInListViewModel>(id, ItemsPerPage),
                 ItemsPerPage = ItemsPerPage
             };
             return this.View(viewModel);
