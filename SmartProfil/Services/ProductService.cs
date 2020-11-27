@@ -71,7 +71,7 @@ namespace SmartProfil.Services
 
         }
 
-        public IEnumerable<ProductInListViewModel> GetAll(int page, int productsPerPage = 12)
+        public IEnumerable<ProductInListViewModel> GetAll(int page, int productsPerPage = 1)
         {
             var products = this.db.Products.OrderByDescending(x => x.Id)
                 .Skip((page - 1) * productsPerPage).Take(productsPerPage)
@@ -89,6 +89,11 @@ namespace SmartProfil.Services
                 }).ToList();
 
             return products;
+        }
+
+        public int GetCount()
+        {
+            return this.db.Products.Count();
         }
     }
 }

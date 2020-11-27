@@ -6,34 +6,17 @@
 <h1>@this.ViewData["Title"]</h1>
 <hr />
 <div class="row">
-    @foreach(var product in this.Model.Products)
+    @foreach (var product in this.Model.Products)
     {
         <div class="card col-md-4" style="width: 18rem;">
-            <img class="card-img-top mx-1" src="@product.Image"  alt="Card image cap" style="width: 17rem; height: 12rem;" >
+            <img class="card-img-top mx-1" src="@product.Image" alt="Card image cap" style="width: 17rem; height: 12rem;">
             <div class="card-body">
                 <h5 class="card-title">@product.Manufacturer  @product.Name  @product.Model</h5>
                 <p class="card-text">@product.Description</p>
                 <a href="#" class="btn btn-success">Buy</a>
-            </div> 
+            </div>
         </div>
     }
 </div>
 <hr />
-<nav aria-label="...">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <span class="page-link">Previous</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-            <span class="page-link">
-                2
-                <span class="sr-only">(current)</span>
-            </span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
+<partial name="_PagingPartial" model="@Model"/>

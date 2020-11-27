@@ -2,10 +2,9 @@
 
 namespace SmartProfil.ViewModels
 {
-    public class ProductsListViewModel
+    public class ProductsListViewModel : PagingViewModel
     {
         public IEnumerable<ProductInListViewModel> Products { get; set; }
 
-        public int PageNumber { get; set; }
     }
 }

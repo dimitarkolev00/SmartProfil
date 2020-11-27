@@ -81,10 +81,13 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
+            const int ItemsPerPage = 1;
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
-                Products = this.productService.GetAll(id, 12),
+                ProductsCount = this.productService.GetCount(),
+                Products = this.productService.GetAll(id, ItemsPerPage),
+                ItemsPerPage = ItemsPerPage
             };
             return this.View(viewModel);
         }
