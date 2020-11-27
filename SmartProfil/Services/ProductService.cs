@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,13 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using SmartProfil.Data;
 using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
+using SmartProfil.ViewModels;
 using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services
 {
     public class ProductService : IProductService
     {
-        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif","jpeg" };
+        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif", "jpeg", "tif" };
         private readonly ApplicationDbContext db;
         private readonly IWebHostEnvironment environment;
 
@@ -43,10 +45,10 @@ namespace SmartProfil.Services
 
             foreach (var image in productModel.Images)
             {
-                var extension = Path.GetExtension(image.FileName);
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
                 var wwwrootPath = this.environment.WebRootPath;
 
-                if (!this.AllowedExtensions.Any(x=>extension.EndsWith(x)))
+                if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
                 {
                     throw new Exception($"Invalid image extension {extension} !");
                 }
@@ -67,6 +69,26 @@ namespace SmartProfil.Services
             await this.db.Products.AddAsync(product);
             await this.db.SaveChangesAsync();
 
+        }
+
+        public IEnumerable<ProductInListViewModel> GetAll(int page, int productsPerPage = 12)
+        {
+            var products = this.db.Products.OrderByDescending(x => x.Id)
+                .Skip((page - 1) * productsPerPage).Take(productsPerPage)
+                .Select(x => new ProductInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Model = x.Model,
+                    Description = x.Description,
+                    Manufacturer = x.Manufacturer.Name,
+                    UnitPrice = x.UnitPrice,
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.Category.Name,
+                    Image = "/images/products/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension
+                }).ToList();
+
+            return products;
         }
     }
 }

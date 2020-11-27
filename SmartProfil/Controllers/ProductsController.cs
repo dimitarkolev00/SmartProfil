@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Models;
@@ -73,6 +72,21 @@ namespace SmartProfil.Controllers
             }
 
             return this.Redirect("/");
+        }
+
+        public IActionResult All(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            var viewModel = new ProductsListViewModel
+            {
+                PageNumber = id,
+                Products = this.productService.GetAll(id, 12),
+            };
+            return this.View(viewModel);
         }
     }
 }
