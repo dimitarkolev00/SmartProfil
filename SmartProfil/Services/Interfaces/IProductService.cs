@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SmartProfil.ViewModels;
 using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services.Interfaces
@@ -12,5 +11,7 @@ namespace SmartProfil.Services.Interfaces
         IEnumerable<T>GetAll<T>(int page, int productsPerPage = 1);
 
         int GetCount();
+
+        T GetById<T>(int id);
     }
 }

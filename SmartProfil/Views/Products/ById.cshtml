@@ -1,0 +1,188 @@
+﻿@model SmartProfil.ViewModels.SingleProductViewModel
+
+@{
+    this.ViewData["Title"] = @Model.Name + " " + @Model.Model;
+}
+<h2>@this.ViewData["Title"]</h2>
+
+<div class="single-shop-content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="single-product-image-holder">
+                <img src="@Model.Image" alt="" class="embed-responsive">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="content-box">
+                <span class="price">@Model.UnitPrice лв.</span>
+                <h2>@Model.Name @Model.Model</h2>
+                <div class="text">
+                    <p>@Model.Description</p>
+                </div>
+                <div class="">
+                    <span style="color: #00e600">Expected Delivery in 2-5 days</span>
+                </div>
+                <div class="addto-cart-box">
+                    <div class="input-group bootstrap-touchspin"><span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span><input class="quantity-spinner form-control" type="text" value="2" name="quantity" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyphicon glyphicon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyphicon glyphicon-chevron-down"></i></button></span></div>
+                    <button class="btn-one addtocart" type="submit">Add to Cart</button>
+                </div>
+                <div class="share-products-socials">
+                    <h5>Share This Product</h5>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook fb" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter tw" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest pin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin lin" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End single shop content-->
+<!--Start product tab box-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="product-tab-box tabs-box">
+            <ul class="tab-btns tab-buttons clearfix">
+                <li data-tab="#desc" class="tab-btn"><span>Descriprion</span></li>
+                <li data-tab="#review" class="tab-btn active-btn"><span>Reviews (2)</span></li>
+            </ul>
+            <div class="tabs-content">
+                <div class="tab" id="desc">
+                    <div class="product-details-content">
+                        <div class="desc-content-box">
+                            <p>
+                                Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great
+                                pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses
+                                to enjoy a pleasure that has no annoying consequences.
+                            </p>
+                            <p>
+                                Must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and of the great explorer of the truth, the
+                                master-builder of human happiness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab active-tab" id="review">
+                    <div class="review-box-holder">
+                        <div class="row">
+                            <!--Start single review box-->
+                            <div class="col-xl-6">
+                                <div class="single-review-box">
+                                    <div class="image-holder">
+                                        <img src="images/shop/review-1.png" alt="Awesome Image">
+                                    </div>
+                                    <div class="text-holder">
+                                        <div class="top">
+                                            <div class="name">
+                                                <h3>Steven Rich <span>– September 17, 2018:</span></h3>
+                                            </div>
+                                            <div class="review-box">
+                                                <ul>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <p>Value for money , I use it from long time and it is very useful and good product.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End single review box-->
+                            <!--Start single review box-->
+                            <div class="col-xl-6">
+                                <div class="single-review-box">
+                                    <div class="image-holder">
+                                        <img src="images/shop/review-2.png" alt="Awesome Image">
+                                    </div>
+                                    <div class="text-holder">
+                                        <div class="top">
+                                            <div class="name">
+                                                <h3>William Cobus <span>– September 17, 2018:</span></h3>
+                                            </div>
+                                            <div class="review-box">
+                                                <ul>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <p>We denounce with righteous indignation and dislike men who are so beguiled &amp; demoralized.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End single review box-->
+                        </div>
+                    </div>
+                    <div class="review-form">
+                        <div class="shop-page-title">
+                            <div class="title">Add Your <span>Comments</span></div>
+                            <p>Your email address will not be published. Required fields are marked <b>*</b></p>
+                        </div>
+                        <form id="review-form" action="#">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <p>Name<span>*</span></p>
+                                        <input type="text" name="fname" placeholder="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box">
+                                        <p>Email<span>*</span></p>
+                                        <input type="email" name="email" placeholder="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="add-rating-box">
+                                        <div class="add-rating-title">
+                                            <h4>Your Rating</h4>
+                                        </div>
+                                        <div class="review-box">
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-box">
+                                        <p>Your Review<span>*</span></p>
+                                        <textarea name="review" placeholder="" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn-one" type="submit">Post Comment</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

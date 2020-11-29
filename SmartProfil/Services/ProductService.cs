@@ -15,7 +15,7 @@ namespace SmartProfil.Services
 {
     public class ProductService : IProductService
     {
-        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif", "jpeg", "tif" };
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif", "jpeg", "tif" };
         private readonly ApplicationDbContext db;
         private readonly IWebHostEnvironment environment;
 
@@ -49,7 +49,7 @@ namespace SmartProfil.Services
                 var extension = Path.GetExtension(image.FileName).TrimStart('.');
                 var wwwrootPath = this.environment.WebRootPath;
 
-                if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
                 {
                     throw new Exception($"Invalid image extension {extension} !");
                 }
@@ -81,6 +81,15 @@ namespace SmartProfil.Services
                 .ToList();
 
             return products;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var product = this.db.Products
+                .Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+
+            return product;
         }
 
         public int GetCount()

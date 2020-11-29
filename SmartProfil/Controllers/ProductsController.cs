@@ -92,5 +92,11 @@ namespace SmartProfil.Controllers
             };
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var productViewModel = this.productService.GetById<SingleProductViewModel>(id);
+            return this.View(productViewModel);
+        }
     }
 }

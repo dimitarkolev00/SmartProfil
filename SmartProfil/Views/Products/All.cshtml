@@ -3,7 +3,7 @@
     this.ViewData["Title"] = "All products";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h2 style=" color: #00e600">@this.ViewData["Title"]</h2>
 <hr />
 <div class="row">
     @foreach (var product in this.Model.Products)
@@ -11,7 +11,7 @@
         <div class="card col-md-4" style="width: 18rem;">
             <img class="card-img-top mx-1" src="@product.Image" alt="Card image cap" style="width: 17rem; height: 12rem;">
             <div class="card-body">
-                <h5 class="card-title">@product.Manufacturer  @product.Name  @product.Model</h5>
+                <h5 class="card-title"><a asp-action="ById" asp-route-id="@product.Id"> @product.Name  @product.Model</a></h5>
                 <p class="card-text">@product.Description</p>
                 <a href="#" class="btn btn-success">Buy</a>
             </div>
@@ -19,4 +19,4 @@
     }
 </div>
 <hr />
-<partial name="_PagingPartial" model="@Model"/>
+<partial name="_PagingPartial" model="@Model" />
