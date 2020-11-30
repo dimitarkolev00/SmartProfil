@@ -9,11 +9,13 @@
     @foreach (var product in this.Model.Products)
     {
         <div class="card col-md-4" style="width: 18rem;">
-            <img class="card-img-top mx-1" src="@product.Image" alt="Card image cap" style="width: 17rem; height: 12rem;">
+            <a asp-action="ById" asp-route-id="@product.Id">
+                <img class="card-img-top mx-1" src="@product.Image" alt="Card image cap" style="width: 17rem; height: 12rem;">
+            </a>
             <div class="card-body">
-                <h5 class="card-title"><a asp-action="ById" asp-route-id="@product.Id"> @product.Name  @product.Model</a></h5>
+                <h5 class="card-title"><a asp-action="ById" asp-route-id="@product.Id">@product.ManufacturerName @product.Name @product.Model</a></h5>
                 <p class="card-text">@product.Description</p>
-                <a href="#" class="btn btn-success">Buy</a>
+                <a asp-action="ById" asp-route-id="@product.Id" class="btn btn-success">Buy</a>
             </div>
         </div>
     }

@@ -16,7 +16,7 @@ namespace SmartProfil.ViewModels
 
         public string Image { get; set; }
 
-        public string Manufacturer { get; set; }
+        public string ManufacturerName { get; set; }
 
         public string Description { get; set; }
 

@@ -1,0 +1,23 @@
+﻿@model SmartProfil.ViewModels.InputModels.AddManufacturerInputModel
+
+@{
+    this.ViewData["Title"] = "Add new manufacturer";
+}
+
+<h2>@this.ViewData["Title"]</h2>
+
+<form method="post" class="col-md-6 offset-md-3"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-success" />
+</form>

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using SmartProfil.AutoMapper;
+using SmartProfil.Models;
 
 namespace SmartProfil.ViewModels.InputModels
 {
-    public class ProductInputModel
+    public class ProductInputModel 
     {
         [Required]
         [MinLength(3)]

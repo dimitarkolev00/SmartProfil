@@ -41,10 +41,13 @@ namespace SmartProfil
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<IProductService, ProductService>();
+         
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IFeedbacksService, FeedbackService>();
             services.AddTransient<IManufacturersService, ManufacturersService>();
             services.AddTransient<IProductMaterialTypesService, ProductMaterialTypesService>();
+            services.AddTransient<IProductService, ProductService>();
+
 
             services.AddControllersWithViews(options =>
                 {
