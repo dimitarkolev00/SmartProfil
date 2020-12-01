@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SmartProfil.Data;
+using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
+using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services
 {
@@ -22,6 +25,17 @@ namespace SmartProfil.Services
             })
                 .ToList()
                 .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public async Task AddAsync(AddProductMaterialTypeInputModel inputModel)
+        {
+            var productMaterial = new ProductMaterialType
+            {
+                Name = inputModel.Name
+            };
+
+            await this.db.ProductMaterialTypes.AddAsync(productMaterial);
+            await this.db.SaveChangesAsync();
         }
     }
 }

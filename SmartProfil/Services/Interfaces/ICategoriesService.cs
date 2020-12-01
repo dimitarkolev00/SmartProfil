@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using SmartProfil.Models;
+using System.Threading.Tasks;
+using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services.Interfaces
 {
@@ -7,5 +8,6 @@ namespace SmartProfil.Services.Interfaces
     {
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
 
+        Task AddAsync(AddCategoryInputModel inputModel);
     }
 }

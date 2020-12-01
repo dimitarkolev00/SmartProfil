@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartProfil.Data;
@@ -12,7 +13,8 @@ namespace SmartProfil.Controllers
         private readonly ILogger<HomeController> logger;
         private readonly ApplicationDbContext db;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, 
+            ApplicationDbContext db)
         {
             this.logger = logger;
             this.db = db;

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SmartProfil.Data;
+using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
+using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services
 {
@@ -23,6 +26,17 @@ namespace SmartProfil.Services
                 .OrderBy(x => x.Name)
                 .ToList()
                 .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public async Task AddAsync(AddCategoryInputModel inputModel)
+        {
+            var category = new Category
+            {
+                Name = inputModel.Name
+            };
+
+            await this.db.Categories.AddAsync(category);
+            await this.db.SaveChangesAsync();
         }
     }
 }

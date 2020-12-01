@@ -7,13 +7,13 @@ using SmartProfil.ViewModels.InputModels;
 namespace SmartProfil.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class ManufacturerController : Controller
+    public class CategoryController:Controller
     {
-        private readonly IManufacturersService manufacturersService;
+        private readonly ICategoriesService categoriesService;
 
-        public ManufacturerController(IManufacturersService manufacturersService)
+        public CategoryController(ICategoriesService categoriesService)
         {
-            this.manufacturersService = manufacturersService;
+            this.categoriesService = categoriesService;
         }
         public IActionResult AddNew()
         {
@@ -21,9 +21,9 @@ namespace SmartProfil.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNew(AddManufacturerInputModel inputModel)
+        public async Task<IActionResult> AddNew(AddCategoryInputModel inputModel)
         {
-            await this.manufacturersService.AddAsync(inputModel);
+            await this.categoriesService.AddAsync(inputModel);
             return this.Redirect("/Products/Create");
         }
     }

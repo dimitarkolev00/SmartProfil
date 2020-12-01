@@ -28,21 +28,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Contacts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Create">Create Product</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">All Products</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Add
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Category</a>
-                                <a class="dropdown-item" asp-controller="Manufacturer" asp-action="AddNew">Manufacturer</a>
-                                <a class="dropdown-item" href="#">Material</a>
-                            </div>
-                        </li>
+                        @if (@User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Create">Create Product</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    AddNew
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="Category" asp-action="AddNew">Category</a>
+                                    <a class="dropdown-item" asp-controller="Manufacturer" asp-action="AddNew">Manufacturer</a>
+                                    <a class="dropdown-item" asp-controller="ProductMaterial" asp-action="AddNew">Material</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

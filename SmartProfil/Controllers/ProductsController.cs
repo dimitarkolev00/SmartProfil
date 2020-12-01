@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Models;
@@ -30,6 +31,7 @@ namespace SmartProfil.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var viewModel = new ProductInputModel
@@ -43,6 +45,7 @@ namespace SmartProfil.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(ProductInputModel input)
         {
             if (!ModelState.IsValid)
