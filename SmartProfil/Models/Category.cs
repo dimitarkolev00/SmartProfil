@@ -14,10 +14,6 @@ namespace SmartProfil.Models
         [Required]
         public string Name { get; set; }
 
-        public string Description { get; set; }
-
-        public string ImageSource { get; set; }
-
         public virtual ICollection<Product> Products { get; set; }
     }
 }

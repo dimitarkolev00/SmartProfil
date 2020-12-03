@@ -335,12 +335,6 @@ namespace SmartProfil.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageSource")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -390,7 +384,10 @@ namespace SmartProfil.Migrations
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ManufacturerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("RemoteImageUrl")
@@ -399,6 +396,8 @@ namespace SmartProfil.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddedByUserId");
+
+                    b.HasIndex("ManufacturerId");
 
                     b.HasIndex("ProductId");
 
@@ -700,13 +699,17 @@ namespace SmartProfil.Migrations
                         .WithMany()
                         .HasForeignKey("AddedByUserId");
 
+                    b.HasOne("SmartProfil.Models.Manufacturer", "Manufacturer")
+                        .WithMany("Images")
+                        .HasForeignKey("ManufacturerId");
+
                     b.HasOne("SmartProfil.Models.Product", "Product")
                         .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("AddedByUser");
+
+                    b.Navigation("Manufacturer");
 
                     b.Navigation("Product");
                 });
@@ -810,6 +813,8 @@ namespace SmartProfil.Migrations
 
             modelBuilder.Entity("SmartProfil.Models.Manufacturer", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("Products");
                 });
 

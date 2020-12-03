@@ -24,6 +24,9 @@ namespace SmartProfil.Controllers
         public async Task<IActionResult> AddNew(AddProductMaterialTypeInputModel inputModel)
         {
             await this.productMaterialTypesService.AddAsync(inputModel);
+
+            this.TempData["Message"] = "New material type added successfully!";
+
             return this.Redirect("/Products/Create");
         }
     }

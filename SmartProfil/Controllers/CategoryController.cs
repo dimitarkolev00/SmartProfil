@@ -24,6 +24,9 @@ namespace SmartProfil.Controllers
         public async Task<IActionResult> AddNew(AddCategoryInputModel inputModel)
         {
             await this.categoriesService.AddAsync(inputModel);
+
+            this.TempData["Message"] = "New category added successfully!";
+
             return this.Redirect("/Products/Create");
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.AccessControl;
+using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Models
 {
@@ -14,7 +16,11 @@ namespace SmartProfil.Models
 
         public string RemoteImageUrl { get; set; }
 
-        public int ProductId { get; set; }
+        public int? ManufacturerId { get; set; }
+
+        public virtual Manufacturer Manufacturer { get; set; }
+
+        public int? ProductId { get; set; }
 
         public virtual Product Product { get; set; }
 

@@ -74,7 +74,9 @@ namespace SmartProfil.Controllers
                 return this.View(input);
             }
 
-            return this.Redirect("/");
+            this.TempData["Message"] = "Product added successfully!";
+
+            return this.RedirectToAction("All");
         }
 
         public IActionResult All(int id = 1)

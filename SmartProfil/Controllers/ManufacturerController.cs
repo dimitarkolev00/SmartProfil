@@ -24,6 +24,9 @@ namespace SmartProfil.Controllers
         public async Task<IActionResult> AddNew(AddManufacturerInputModel inputModel)
         {
             await this.manufacturersService.AddAsync(inputModel);
+
+            this.TempData["Message"] = "New manufacturer added successfully!";
+
             return this.Redirect("/Products/Create");
         }
     }

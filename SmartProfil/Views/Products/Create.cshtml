@@ -1,4 +1,4 @@
-﻿@model  SmartProfil.ViewModels.InputModels.ProductInputModel
+﻿@model SmartProfil.ViewModels.InputModels.ProductInputModel
 
 @{
     ViewData["Title"] = "Добави продукт";
@@ -11,7 +11,11 @@
 
     var productMaterialTypes = Model.ProductMaterialTypes
         .Select(x => new SelectListItem(x.Value, x.Key));
+}
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
 }
 
 <form method="post" class="col-md-6 offset-md-3"
@@ -30,17 +34,17 @@
     </div>
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
-        <select asp-for="CategoryId" class="form-control"  asp-items="categories"></select>
-        <span asp-validation-for="CategoryId" class="text-danger"></span> 
+        <select asp-for="CategoryId" class="form-control" asp-items="categories"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ProductMaterialTypeId">Material Type</label>
-        <select asp-for="ProductMaterialTypeId" class="form-control" asp-items="productMaterialTypes" ></select>
+        <select asp-for="ProductMaterialTypeId" class="form-control" asp-items="productMaterialTypes"></select>
         <span asp-validation-for="ProductMaterialTypeId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ManufacturerId">Manufacturer</label>
-        <select asp-for="ManufacturerId" class="form-control" asp-items="manufacturers" ></select>
+        <select asp-for="ManufacturerId" class="form-control" asp-items="manufacturers"></select>
         <span asp-validation-for="ManufacturerId" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -86,6 +90,8 @@
     <input type="submit" class="btn btn-success" />
 </form>
 
-@section Scripts{ 
-    @{ <partial name="_ValidationScriptsPartial"/>}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

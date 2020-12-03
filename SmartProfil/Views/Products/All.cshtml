@@ -3,6 +3,11 @@
     this.ViewData["Title"] = "All products";
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
 <h2 style=" color: #00e600">@this.ViewData["Title"]</h2>
 <hr />
 <div class="row">
