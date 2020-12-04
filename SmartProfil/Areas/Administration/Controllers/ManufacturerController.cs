@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Services.Interfaces;
 using SmartProfil.ViewModels.InputModels;
 
-namespace SmartProfil.Controllers
+namespace SmartProfil.Areas.Administration.Controllers
 {
+    [Area("Administration")]
     [Authorize(Roles = "Admin")]
     public class ManufacturerController : Controller
     {
