@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartProfil.Data;
@@ -41,6 +41,12 @@ namespace SmartProfil
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.Configure<CookiePolicyOptions>(
+                options =>
+                {
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IFeedbacksService, FeedbackService>();
@@ -80,6 +86,7 @@ namespace SmartProfil
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 

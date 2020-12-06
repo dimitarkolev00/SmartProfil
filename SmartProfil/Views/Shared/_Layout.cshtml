@@ -22,10 +22,13 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">About us</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Contacts</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">All Products</a>
@@ -42,7 +45,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Category" asp-action="AddNew">Category</a>
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="AddNew">Manufacturer</a>
-                                    <a class="dropdown-item" asp-area="Administration" asp-controller="ProductMaterial"  asp-action="AddNew">Material</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="ProductMaterial" asp-action="AddNew">Material</a>
                                 </div>
                             </li>
                         }
@@ -53,13 +56,14 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_CookieConsentPartial"/>
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - SmartProfil - <a asp-area="" asp-controller="Home" asp-action="Privacy">Контакти</a>
+            &copy; 2020 - SmartProfil - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Security.AccessControl;
 
 namespace SmartProfil.Models
 {
@@ -19,7 +18,7 @@ namespace SmartProfil.Models
         [Required]
         public string Country { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

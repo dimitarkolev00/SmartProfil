@@ -12,10 +12,15 @@
                 <img src="@Model.Image" class="embed-responsive">
             </div>
         </div>
-        <div class="col-lg-6" style="padding-left: 70px">
+        <div class="col-lg-6" style="padding-left: 50px">
             <div>
-                <span style="font-weight: bold">@Model.UnitPrice лв.</span>
                 <h2 style="padding-top: 8px">@Model.Name @Model.Model</h2>
+                <div class="col-md-3">
+                    <div>
+                        <img src="@Model.ManufacturerImage" class="embed-responsive">
+                    </div>
+                </div>
+                <span style="font-weight: bold">@Model.UnitPrice лв.</span>
                 <div>
                     <p style="padding-top: 8px">@Model.Description</p>
                 </div>
@@ -23,148 +28,42 @@
                     <span style="color: #00e600">Expected Delivery in 2-5 days</span>
                 </div>
                 <div>
-                    <div class="input-group"><span style="display: none;"></span><input class="form-control" type="text" value="2" name="quantity" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyphicon glyphicon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyphicon glyphicon-chevron-down"></i></button></span></div>
-                    <button type="submit">Add to Cart</button>
-                </div>
-                <div>
-                    @*<h5>Share This Product</h5>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook fb" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter tw" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest pin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin lin" aria-hidden="true"></i></a></li>
-                        </ul>*@
+                    <div class="input-group " style="padding-top: 12px" align="left">
+                        <p align="left" style="padding-right: 10px; font-weight: bold">
+                            Quantity:
+                            <input class="form-control col-md-4" type="number" value="1" name="quantity">
+                        </p>
+
+                    </div>
+                    <button class="btn-outline-success" type="submit">Add to Cart</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--Start product tab box-->
 <div class="row">
     <div class="col-md-12">
         <div>
             <h4 style="font-weight: bold">Specifications</h4>
             <div>
+                <ul>
+                    @if (Model.Length.HasValue)
+                    {
+                        <li>Length = @Model.Length m.</li>
+                    }
+                    @if (Model.Weight.HasValue)
+                    {
+                        <li>Weight = @Model.Weight kg.</li>
+                    }
+                    @if (Model.Width.HasValue)
+                    {
+                        <li>Weight = @Model.Width mm.</li>
+                    }
+                </ul>
                 <p class="col-md-8">
                     @Model.Specifications
                 </p>
             </div>
-            <div id="review">
-                <div>
-                    <div class="row">
-                        <!--Start single review box-->
-                        <div class="col-xl-6">
-                            <div class="single-review-box">
-                                <div class="image-holder">
-                                    <img src="images/shop/review-1.png" alt="Awesome Image">
-                                </div>
-                                <div class="text-holder">
-                                    <div class="top">
-                                        <div class="name">
-                                            <h3>Steven Rich <span>– September 17, 2018:</span></h3>
-                                        </div>
-                                        <div class="review-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <p>Value for money , I use it from long time and it is very useful and good product.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End single review box-->
-                        <!--Start single review box-->
-                        <div class="col-xl-6">
-                            <div class="single-review-box">
-                                <div class="image-holder">
-                                    <img src="images/shop/review-2.png" alt="Awesome Image">
-                                </div>
-                                <div class="text-holder">
-                                    <div class="top">
-                                        <div class="name">
-                                            <h3>William Cobus <span>– September 17, 2018:</span></h3>
-                                        </div>
-                                        <div class="review-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <p>We denounce with righteous indignation and dislike men who are so beguiled &amp; demoralized.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End single review box-->
-                    </div>
-                </div>
-                <div class="review-form">
-                    <div class="shop-page-title">
-                        <div class="title">Add Your <span>Comments</span></div>
-                        <p>Your email address will not be published. Required fields are marked <b>*</b></p>
-                    </div>
-                    <form id="review-form" action="#">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-box">
-                                    <p>Name<span>*</span></p>
-                                    <input type="text" name="fname" placeholder="" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-box">
-                                    <p>Email<span>*</span></p>
-                                    <input type="email" name="email" placeholder="" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="add-rating-box">
-                                    <div class="add-rating-title">
-                                        <h4>Your Rating</h4>
-                                    </div>
-                                    <div class="review-box">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="input-box">
-                                    <p>Your Review<span>*</span></p>
-                                    <textarea name="review" placeholder="" required=""></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button class="btn-one" type="submit">Post Comment</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

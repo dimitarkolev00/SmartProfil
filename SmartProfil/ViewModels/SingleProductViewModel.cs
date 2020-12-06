@@ -20,6 +20,8 @@ namespace SmartProfil.ViewModels
 
         public string ManufacturerName { get; set; }
 
+        public string ManufacturerImage { get; set; }
+
         public string Description { get; set; }
 
         public string Specifications { get; set; }
@@ -43,7 +45,13 @@ namespace SmartProfil.ViewModels
             configuration.CreateMap<Product, SingleProductViewModel>()
                 .ForMember(x => x.Image, opt =>
                     opt.MapFrom(x =>
-                        "/images/products/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+                        "/images/products/" + x.Images.FirstOrDefault().Id + "." +
+                        x.Images.FirstOrDefault().Extension))
+                .ForMember(x => x.ManufacturerImage, opt =>
+                    opt.MapFrom(x =>
+                        "/images/logos/" + x.Manufacturer.Images.FirstOrDefault().Id + "." +
+                        x.Manufacturer.Images.FirstOrDefault().Extension));
+
         }
     }
 }
