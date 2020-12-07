@@ -19,7 +19,17 @@
             </a>
             <div class="card-body">
                 <h5 class="card-title"><a asp-action="ById" asp-route-id="@product.Id">@product.ManufacturerName @product.Name @product.Model</a></h5>
-                <p class="card-text">@product.Description</p>
+                <p class="card-text">
+                    @if (product.Description.Length>150)
+                    {
+                        @product.Description.Substring(0,150)<span> ...</span> ;
+                    }
+                    else
+                    {
+                        @product.Description
+                    }
+                    
+                </p>
                 <a asp-action="ById" asp-route-id="@product.Id" class="btn btn-success">Buy</a>
             </div>
         </div>

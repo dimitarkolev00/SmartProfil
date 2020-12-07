@@ -1,7 +1,7 @@
 ﻿@model SmartProfil.ViewModels.InputModels.ProductInputModel
 
 @{
-    ViewData["Title"] = "Добави продукт";
+    ViewData["Title"] = "Create product";
 
     var categories = Model.Categories
         .Select(x => new SelectListItem(x.Value, x.Key));
@@ -17,10 +17,10 @@
 {
     <div class="alert alert-success">@this.TempData["Message"]</div>
 }
+<h2 style=" color: #00e600" align="left">@this.ViewData["Title"]</h2>
 
 <form method="post" class="col-md-6 offset-md-3"
       enctype="multipart/form-data">
-    <h2 style=" color: #00e600">@this.ViewData["Title"]</h2>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Name"></label>

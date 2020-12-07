@@ -7,6 +7,7 @@
     <title>@ViewData["Title"] - SmartProfil</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -35,17 +36,16 @@
                         </li>
                         @if (@User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Create">Create Product</a>
-                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    AddNew
+                                <a class="nav-link dropdown-toggle" style="font-weight: inherit " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Administration
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Category" asp-action="AddNew">Category</a>
-                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="AddNew">Manufacturer</a>
-                                    <a class="dropdown-item" asp-area="Administration" asp-controller="ProductMaterial" asp-action="AddNew">Material</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Create">Create Product</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="ProductsEdit" asp-action="Index">Edit product</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Category" asp-action="AddNew">Add new category</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="AddNew">Add new manufacturer</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="ProductMaterial" asp-action="AddNew">Add new material</a>
                                 </div>
                             </li>
                         }
@@ -56,7 +56,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <partial name="_CookieConsentPartial"/>
+            <partial name="_CookieConsentPartial" />
             @RenderBody()
         </main>
     </div>
@@ -69,6 +69,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/media/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
