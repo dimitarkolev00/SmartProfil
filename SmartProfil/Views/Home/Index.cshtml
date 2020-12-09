@@ -1,8 +1,26 @@
-﻿@{
+﻿@model SmartProfil.ViewModels.IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to SmartProfil</h1>
-    <img src="~/LogoWhite.ico" class="align-content-md-center" height="300" width="300" asp-append-version="true" />
+    <img src="~/LogoWhite.ico" class="align-content-md-center" height="200" width="200" asp-append-version="true" />
+    <div class="col-md-10 " style="padding-left: 200px">
+        <div class="row">
+            @foreach (var product in Model.RandomProducts)
+            {
+                <div class="card col-md-3">
+                    <a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id">
+                        <img class="card-img-top" src="@product.Image" alt="@product.Name">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id">@product.ManufacturerName @product.Name @product.Model</a></h5>
+                        <p class="card-text">@product.UnitPrice лв.</p>
+                        <a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id" class="btn btn-success" >View product</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

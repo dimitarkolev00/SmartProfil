@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using SmartProfil.AutoMapper;
 using SmartProfil.Data;
 using SmartProfil.Models;
@@ -81,6 +83,14 @@ namespace SmartProfil.Services
                 .ToList();
 
             return products;
+        }
+
+        public IEnumerable<T> GetRandom<T>(int count)
+        {
+            return this.db.Products.OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .To<T>()
+                .ToList();
         }
 
         public T GetById<T>(int id)

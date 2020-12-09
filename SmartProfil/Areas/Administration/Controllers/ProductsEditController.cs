@@ -13,15 +13,15 @@ namespace SmartProfil.Areas.Administration.Controllers
     [Authorize(Roles = "Admin")]
     public class ProductsEditController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
 
         public ProductsEditController(ApplicationDbContext context)
         {
-            _context = context;
+            this.db = context;
         }
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Products.Include(p => p.AddedByUser).Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductMaterialType);
+            var applicationDbContext = this.db.Products.Include(p => p.AddedByUser).Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductMaterialType);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -33,7 +33,7 @@ namespace SmartProfil.Areas.Administration.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await this.db.Products
                 .Include(p => p.AddedByUser)
                 .Include(p => p.Category)
                 .Include(p => p.Manufacturer)
@@ -54,15 +54,15 @@ namespace SmartProfil.Areas.Administration.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await this.db.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
-            ViewData["AddedByUserId"] = new SelectList(_context.Users, "Id", "Id", product.AddedByUserId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "Id", "Country", product.ManufacturerId);
-            ViewData["ProductMaterialTypeId"] = new SelectList(_context.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
+            ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", product.AddedByUserId);
+            ViewData["CategoryId"] = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Country", product.ManufacturerId);
+            ViewData["ProductMaterialTypeId"] = new SelectList(this.db.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
             return View(product);
         }
 
@@ -79,8 +79,8 @@ namespace SmartProfil.Areas.Administration.Controllers
             {
                 try
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    this.db.Update(product);
+                    await this.db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -95,10 +95,10 @@ namespace SmartProfil.Areas.Administration.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AddedByUserId"] = new SelectList(_context.Users, "Id", "Id", product.AddedByUserId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "Id", "Country", product.ManufacturerId);
-            ViewData["ProductMaterialTypeId"] = new SelectList(_context.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
+            ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", product.AddedByUserId);
+            ViewData["CategoryId"] = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Country", product.ManufacturerId);
+            ViewData["ProductMaterialTypeId"] = new SelectList(this.db.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
             return View(product);
         }
 
@@ -109,7 +109,7 @@ namespace SmartProfil.Areas.Administration.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await this.db.Products
                 .Include(p => p.AddedByUser)
                 .Include(p => p.Category)
                 .Include(p => p.Manufacturer)
@@ -127,15 +127,15 @@ namespace SmartProfil.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            var product = await this.db.Products.FindAsync(id);
+            this.db.Products.Remove(product);
+            await this.db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return this.db.Products.Any(e => e.Id == id);
         }
     }
 }
