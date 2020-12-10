@@ -11,10 +11,12 @@ namespace SmartProfil.Areas.Administration.Controllers
     public class ManufacturerController : Controller
     {
         private readonly IManufacturersService manufacturersService;
+        private readonly IProductService productService;
 
-        public ManufacturerController(IManufacturersService manufacturersService)
+        public ManufacturerController(IManufacturersService manufacturersService, IProductService productService)
         {
             this.manufacturersService = manufacturersService;
+            this.productService = productService;
         }
         public IActionResult AddNew()
         {
@@ -30,5 +32,6 @@ namespace SmartProfil.Areas.Administration.Controllers
 
             return this.Redirect("/Products/Create");
         }
+
     }
 }

@@ -16,9 +16,12 @@ namespace SmartProfil.Models
 
         [Required]
         [MinLength(3)]
-        [MaxLength(50)]
+        [MaxLength(15)]
         public string Name { get; set; }
 
+        [Required]
+        [MinLength(1)]
+        [MaxLength(15)]
         public string Model { get; set; }
 
         public int CategoryId { get; set; }
@@ -48,6 +51,8 @@ namespace SmartProfil.Models
         public double? Width { get; set; }
 
         public string AddedByUserId { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
 

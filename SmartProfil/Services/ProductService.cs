@@ -42,7 +42,8 @@ namespace SmartProfil.Services
                 Weight = productModel.Weight,
                 Width = productModel.Width,
                 UnitsInStock = productModel.UnitsInStock,
-                AddedByUserId = userId
+                AddedByUserId = userId,
+                IsDeleted = false
             };
 
 
@@ -76,7 +77,9 @@ namespace SmartProfil.Services
 
         public IEnumerable<T> GetAll<T>(int page, int productsPerPage = 1)
         {
-            var products = this.db.Products.OrderByDescending(x => x.Id)
+            var products = this.db.Products
+                .Where(x=>x.IsDeleted == false)
+                .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * productsPerPage)
                 .Take(productsPerPage)
                 .To<T>()
@@ -87,7 +90,8 @@ namespace SmartProfil.Services
 
         public IEnumerable<T> GetRandom<T>(int count)
         {
-            return this.db.Products.OrderBy(x => Guid.NewGuid())
+            return this.db.Products.Where(x=>x.IsDeleted == false)
+                .OrderBy(x => Guid.NewGuid())
                 .Take(count)
                 .To<T>()
                 .ToList();
@@ -95,7 +99,7 @@ namespace SmartProfil.Services
 
         public T GetById<T>(int id)
         {
-            var product = this.db.Products
+            var product = this.db.Products.Where(x=>x.IsDeleted == false)
                 .Where(x => x.Id == id)
                 .To<T>().FirstOrDefault();
 
@@ -104,7 +108,7 @@ namespace SmartProfil.Services
 
         public int GetCount()
         {
-            return this.db.Products.Count();
+            return this.db.Products.Count(x => x.IsDeleted == false);
         }
     }
 }

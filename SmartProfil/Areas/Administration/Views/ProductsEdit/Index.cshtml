@@ -27,9 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.UnitPrice)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitsInStock)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,13 +47,10 @@
                     @Html.DisplayFor(modelItem => item.ProductMaterialType.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Manufacturer.Country)
+                    @Html.DisplayFor(modelItem => item.Manufacturer.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UnitPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitsInStock)
                 </td>
                 <td>
                     <a class="btn btn-primary" asp-area="Administration" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

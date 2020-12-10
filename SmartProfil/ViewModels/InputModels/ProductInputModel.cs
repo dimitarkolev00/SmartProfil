@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using SmartProfil.AutoMapper;
@@ -10,8 +11,12 @@ namespace SmartProfil.ViewModels.InputModels
     {
         [Required]
         [MinLength(3)]
+        [MaxLength(15)]
         public string Name { get; set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(15)]
         public string Model { get; set; }
 
         public int CategoryId { get; set; }
@@ -21,19 +26,25 @@ namespace SmartProfil.ViewModels.InputModels
         public int ManufacturerId { get; set; }
 
         public string Description { get; set; }
-
+        
         public string Specifications { get; set; }
 
+        [Range(0, Int32.MaxValue)]
         public decimal UnitPrice { get; set; }
 
+        [Range(0, Int32.MaxValue)]
         public int? UnitsInStock { get; set; }
 
+        [Range(0, Int32.MaxValue)]
         public double? Weight { get; set; }
 
+        [Range(0, Int32.MaxValue)]
         public double? Length { get; set; }
 
+        [Range(0, Int32.MaxValue)]
         public double? Width { get; set; }
 
+        [Required]
         public IEnumerable<IFormFile> Images { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> Categories { get; set; }

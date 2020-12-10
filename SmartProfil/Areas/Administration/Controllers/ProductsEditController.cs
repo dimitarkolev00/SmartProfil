@@ -19,13 +19,18 @@ namespace SmartProfil.Areas.Administration.Controllers
         {
             this.db = context;
         }
+
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = this.db.Products.Include(p => p.AddedByUser).Include(p => p.Category).Include(p => p.Manufacturer).Include(p => p.ProductMaterialType);
+            var applicationDbContext = this.db.Products.Where(x=>x.IsDeleted==false)
+                .Include(p => p.AddedByUser)
+                .Include(p => p.Category)
+                .Include(p => p.Manufacturer)
+                .Include(p => p.ProductMaterialType);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Administration/ProductsEdit/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -128,8 +133,11 @@ namespace SmartProfil.Areas.Administration.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await this.db.Products.FindAsync(id);
-            this.db.Products.Remove(product);
+            product.IsDeleted = true;
+
+            this.db.Products.Update(product);
             await this.db.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

@@ -24,7 +24,7 @@ namespace SmartProfil.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<ProductMaterialType> ProductMaterialTypes { get; set; }
-        
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
@@ -33,5 +33,13 @@ namespace SmartProfil.Data
         //        .WithMany(a => a.Feedbacks)
         //        .OnDelete(DeleteBehavior.NoAction);
         //}
+
+    //    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //    {
+    //        modelBuilder.Entity<Image>()
+    //            .HasOne(x => x.Product)
+    //            .WithMany(a => a.Images)
+    //            .OnDelete(DeleteBehavior.NoAction);
+    //    }
     }
 }

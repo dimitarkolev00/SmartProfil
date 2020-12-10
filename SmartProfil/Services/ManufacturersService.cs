@@ -68,5 +68,6 @@ namespace SmartProfil.Services
             await this.db.Manufacturers.AddAsync(manufacturer);
             await this.db.SaveChangesAsync();
         }
+
     }
 }
