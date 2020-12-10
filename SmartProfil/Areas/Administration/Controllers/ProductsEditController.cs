@@ -66,7 +66,7 @@ namespace SmartProfil.Areas.Administration.Controllers
             }
             ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", product.AddedByUserId);
             ViewData["CategoryId"] = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
-            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Country", product.ManufacturerId);
+            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
             ViewData["ProductMaterialTypeId"] = new SelectList(this.db.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
             return View(product);
         }
@@ -102,7 +102,7 @@ namespace SmartProfil.Areas.Administration.Controllers
             }
             ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", product.AddedByUserId);
             ViewData["CategoryId"] = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
-            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Country", product.ManufacturerId);
+            ViewData["ManufacturerId"] = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
             ViewData["ProductMaterialTypeId"] = new SelectList(this.db.ProductMaterialTypes, "Id", "Name", product.ProductMaterialTypeId);
             return View(product);
         }
