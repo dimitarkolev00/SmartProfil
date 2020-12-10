@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
-using SmartProfil.AutoMapper;
-using SmartProfil.Models;
 
 namespace SmartProfil.ViewModels.InputModels
 {
@@ -25,6 +23,9 @@ namespace SmartProfil.ViewModels.InputModels
 
         public int ManufacturerId { get; set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(2000)]
         public string Description { get; set; }
         
         public string Specifications { get; set; }
