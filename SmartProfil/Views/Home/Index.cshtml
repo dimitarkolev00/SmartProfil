@@ -1,12 +1,40 @@
-﻿@model SmartProfil.ViewModels.IndexViewModel
+﻿@using System.Collections.Specialized
+@model SmartProfil.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
+<h1 class="display-4">Welcome to SmartProfil</h1>
+@*<img src="~/LogoWhite.ico" class="align-content-md-center" height="200" width="200" asp-append-version="true" />*@
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/indexImg/s77_1260x340.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/indexImg/images (1).jpeg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/indexImg/schiebetuer-data-675x303.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to SmartProfil</h1>
-    <img src="~/LogoWhite.ico" class="align-content-md-center" height="200" width="200" asp-append-version="true" />
-    <div class="col-md-10 " style="padding-left: 200px">
+    <div class="col-md-10 " style="padding-left: 200px; padding-top: 30px">
         <div class="row">
             @foreach (var product in Model.RandomProducts)
             {
@@ -17,10 +45,11 @@
                     <div class="card-body">
                         <h5 class="card-title"><a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id">@product.ManufacturerName @product.Name @product.Model</a></h5>
                         <p class="card-text">@product.UnitPrice лв.</p>
-                        <a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id" class="btn btn-success" >View product</a>
+                        <a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id" class="btn btn-success">View product</a>
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
