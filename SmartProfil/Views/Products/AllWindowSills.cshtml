@@ -1,6 +1,6 @@
 ﻿@model SmartProfil.ViewModels.ProductsListViewModel
 @{
-    this.ViewData["Title"] = "All products";
+    this.ViewData["Title"] = "All window sills";
 }
 
 @if (this.TempData.ContainsKey("Message"))
@@ -13,22 +13,22 @@
 <div class="row">
     @foreach (var product in this.Model.Products)
     {
-        <div class="card col-md-4" style="width: 390px;">
+        <div class="card col-md-4" style="width: 390px; padding-left: 10px">
             <a asp-action="ById" asp-route-id="@product.Id">
                 <img class="card-img-top mx-1" src="@product.Image" alt="Card image cap" style="width: 299px; height: 260px;">
             </a>
             <div class="card-body">
                 <h5 class="card-title"><a asp-action="ById" asp-route-id="@product.Id">@product.ManufacturerName @product.Name @product.Model</a></h5>
                 <p class="card-text">
-                    @if (product.Description.Length>100)
+                    @if (product.Description.Length > 100)
                     {
-                        @product.Description.Substring(0,100)<span> ...</span> ;
+                        @product.Description.Substring(0, 100)<span> ...</span> ;
                     }
                     else
                     {
                         @product.Description
                     }
-                    
+
                 </p>
                 <a asp-action="ById" asp-route-id="@product.Id" class="btn btn-primary" style="color: mediumseagreen">Buy</a>
             </div>
@@ -36,4 +36,4 @@
     }
 </div>
 <hr />
-<partial name="Paging/_PagingPartial" model="@Model" />
+<partial name="Paging/_PagindAllWindowSills" model="@Model" />

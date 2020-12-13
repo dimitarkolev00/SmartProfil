@@ -86,13 +86,70 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 1;
+            const int itemsPerPage = 8;
 
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetCount(),
                 Products = this.productService.GetAll<ProductInListViewModel>(id, itemsPerPage),
+                ItemsPerPage = itemsPerPage
+            };
+            return this.View(viewModel);
+        }
+
+        public IActionResult AllProfiles(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            const int itemsPerPage = 8;
+
+            var viewModel = new ProductsListViewModel
+            {
+                PageNumber = id,
+                ProductsCount = this.productService.GetProfilesCount(),
+                Products = this.productService.GetAllProfiles<ProductInListViewModel>(id, itemsPerPage),
+                ItemsPerPage = itemsPerPage
+            };
+            return this.View(viewModel);
+        }
+
+        public IActionResult AllAccessories(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            const int itemsPerPage = 8;
+
+            var viewModel = new ProductsListViewModel
+            {
+                PageNumber = id,
+                ProductsCount = this.productService.GetAccessoriesCount(),
+                Products = this.productService.GetAllAccessories<ProductInListViewModel>(id, itemsPerPage),
+                ItemsPerPage = itemsPerPage
+            };
+            return this.View(viewModel);
+        }
+
+        public IActionResult AllWindowSills(int id = 1)
+        {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            const int itemsPerPage = 8;
+
+            var viewModel = new ProductsListViewModel
+            {
+                PageNumber = id,
+                ProductsCount = this.productService.GetWindowSillsCount(),
+                Products = this.productService.GetAllWindowSills<ProductInListViewModel>(id, itemsPerPage),
                 ItemsPerPage = itemsPerPage
             };
             return this.View(viewModel);

@@ -7,24 +7,6 @@
 
 <div>
     <div class="row">
-        @*<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                @foreach (var img in Model.Image)
-                {
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="@img" alt="First img">
-                    </div>
-                }
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>*@
         <div class="col-lg-4">
             <div>
                 <img src="@Model.Image" class="embed-responsive">
@@ -33,9 +15,9 @@
         <div class="col-lg-6" style="padding-left: 50px">
             <div>
                 <h2 style="padding-top: 8px">@Model.Name @Model.Model</h2>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div>
-                        <img src="@Model.ManufacturerImage" class="embed-responsive">
+                        <img src="@Model.ManufacturerImage" class="embed-responsive" style="width: 180px; height: 80px">
                     </div>
                 </div>
                 <span style="font-weight: bold">@Model.UnitPrice лв.</span>

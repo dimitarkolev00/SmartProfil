@@ -75,10 +75,52 @@ namespace SmartProfil.Services
 
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int productsPerPage = 1)
+        public IEnumerable<T> GetAll<T>(int page, int productsPerPage )
         {
             var products = this.db.Products
-                .Where(x=>x.IsDeleted == false)
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .To<T>()
+                .ToList();
+
+            return products;
+        }
+
+        public IEnumerable<T> GetAllProfiles<T>(int page, int productsPerPage )
+        {
+            var products = this.db.Products
+                .Where(x => x.IsDeleted == false)
+                .Where(x => x.Category.Name == "Profile")
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .To<T>()
+                .ToList();
+
+            return products;
+        }
+
+        public IEnumerable<T> GetAllAccessories<T>(int page, int productsPerPage)
+        {
+            var products = this.db.Products
+                .Where(x => x.IsDeleted == false)
+                .Where(x => x.Category.Name == "Accessories")
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .To<T>()
+                .ToList();
+
+            return products;
+        }
+
+        public IEnumerable<T> GetAllWindowSills<T>(int page, int productsPerPage)
+        {
+            var products = this.db.Products
+                .Where(x => x.IsDeleted == false)
+                .Where(x => x.Category.Name == "Window Sill")
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * productsPerPage)
                 .Take(productsPerPage)
@@ -90,16 +132,18 @@ namespace SmartProfil.Services
 
         public IEnumerable<T> GetRandom<T>(int count)
         {
-            return this.db.Products.Where(x=>x.IsDeleted == false)
+            return this.db.Products.Where(x => x.IsDeleted == false)
                 .OrderBy(x => Guid.NewGuid())
                 .Take(count)
                 .To<T>()
                 .ToList();
         }
 
+       
+
         public T GetById<T>(int id)
         {
-            var product = this.db.Products.Where(x=>x.IsDeleted == false)
+            var product = this.db.Products.Where(x => x.IsDeleted == false)
                 .Where(x => x.Id == id)
                 .To<T>().FirstOrDefault();
 
@@ -109,6 +153,23 @@ namespace SmartProfil.Services
         public int GetCount()
         {
             return this.db.Products.Count(x => x.IsDeleted == false);
+        }
+        public int GetProfilesCount()
+        {
+            return this.db.Products.Count
+                (x => x.IsDeleted == false && x.Category.Name=="Profile");
+        }
+
+        public int GetAccessoriesCount()
+        {
+            return this.db.Products.Count
+                (x => x.IsDeleted == false && x.Category.Name == "Accessories");
+        }
+
+        public int GetWindowSillsCount()
+        {
+            return this.db.Products.Count
+                (x => x.IsDeleted == false && x.Category.Name == "Window Sill");
         }
     }
 }

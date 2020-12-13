@@ -4,7 +4,7 @@
     this.ViewData["Title"] = "Add new manufacturer";
 }
 
-<h2 style=" color: #00e600">@this.ViewData["Title"]</h2>
+<h2 style=" color: purple">@this.ViewData["Title"]</h2>
 
 <form method="post" class="col-md-6 offset-md-3"
       enctype="multipart/form-data">
@@ -24,7 +24,7 @@
         <input asp-for="Images" class="form-control" />
         <span asp-validation-for="Images" class="text-danger"></span>
     </div>
-    <input type="submit" class="btn btn-success" />
+    <input type="submit" class="btn btn-primary" style="color: mediumseagreen" />
 </form>
 
 @section Scripts{

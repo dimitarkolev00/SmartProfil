@@ -13,7 +13,7 @@ namespace SmartProfil.ViewModels.InputModels
         public string Name { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(1)]
         [MaxLength(15)]
         public string Model { get; set; }
 
