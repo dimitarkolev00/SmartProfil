@@ -8,7 +8,7 @@ namespace SmartProfil.ViewModels.InputModels
     public class ProductInputModel 
     {
         [Required]
-        [MinLength(3)]
+        [MinLength(1)]
         [MaxLength(15)]
         public string Name { get; set; }
 

@@ -42,8 +42,10 @@
                                 <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="AllProfiles">Profile</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="AllAccessories">Accessories</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="AllWindowSills">Window sill</a>
-                                @*<a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="AddNew">Thermopanels</a>*@
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Cart" asp-action="All"><i class="fas fa-shopping-basket" style="padding-right: 6px"></i>Cart</a>
                         </li>
                         @if (@User.IsInRole("Admin"))
                         {

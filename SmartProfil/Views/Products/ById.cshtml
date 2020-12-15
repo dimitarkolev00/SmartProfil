@@ -28,14 +28,17 @@
                     <span style="color: #00e600">Expected Delivery in 2-5 days</span>
                 </div>
                 <div>
-                    <div class="input-group " style="padding-top: 12px" align="left">
-                        <p align="left" style="padding-right: 10px; font-weight: bold">
-                            Quantity:
-                            <input class="form-control col-md-4" type="number" value="1" name="quantity">
-                        </p>
-
-                    </div>
-                    <button class="btn-outline-success" type="submit">Add to Cart</button>
+                    @using (Html.BeginForm("AddToCart", "Cart", 
+                        new { productId = Model.Id, quantity = "quantity" }, FormMethod.Post))
+                    {
+                        <div class="input-group " style="padding-top: 12px" align="left">
+                            <p align="left" style="font-weight: bold">
+                                Quantity:
+                                <input class="form-control col-md-4" type="number" value="1" name="quantity" id="quantity">
+                            </p>
+                            <button type="submit" class="btn btn-primary" style="color: mediumseagreen; height: 50px;"> Add to cart </button>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

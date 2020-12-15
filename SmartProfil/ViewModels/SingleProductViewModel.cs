@@ -8,6 +8,8 @@ namespace SmartProfil.ViewModels
 {
     public class SingleProductViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Model { get; set; }

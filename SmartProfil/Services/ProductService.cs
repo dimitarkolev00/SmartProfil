@@ -145,15 +145,38 @@ namespace SmartProfil.Services
         {
             var product = this.db.Products.Where(x => x.IsDeleted == false)
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return product;
+        }
+
+        public Product GetProductById(int productId)
+        {
+
+            return this.db.Products.FirstOrDefault(x => x.Id == productId);
+
+            //if (withNavigationalProperties)
+            //{
+            //    return context.Products
+            //        .Include(x => x.ProductComments)
+            //        .ThenInclude(pc => pc.User)
+            //        .Include(x => x.ProductRatings)
+            //        .ThenInclude(x => x.User)
+            //        .Include(x => x.AdditionalImages)
+            //        .FirstOrDefault(x => x.Id == productId);
+            //}
+            //else
+            //{
+            //    return context.Products.FirstOrDefault(x => x.Id == productId);
+            //}
         }
 
         public int GetCount()
         {
             return this.db.Products.Count(x => x.IsDeleted == false);
         }
+
         public int GetProfilesCount()
         {
             return this.db.Products.Count

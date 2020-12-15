@@ -48,12 +48,13 @@ namespace SmartProfil
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
-            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IFeedbacksService, FeedbackService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IManufacturersService, ManufacturersService>();
             services.AddTransient<IProductMaterialTypesService, ProductMaterialTypesService>();
-            services.AddTransient<IProductService, ProductService>();
-
 
             services.AddControllersWithViews(options =>
                 {
@@ -67,7 +68,6 @@ namespace SmartProfil
                 options.HeaderName = "X-CSRF-TOKEN";
             });
 
-            //services.AddSingleton(this.configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

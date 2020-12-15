@@ -86,7 +86,7 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 8;
+            const int itemsPerPage = 9;
 
             var viewModel = new ProductsListViewModel
             {
@@ -105,7 +105,7 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 8;
+            const int itemsPerPage = 9;
 
             var viewModel = new ProductsListViewModel
             {
@@ -124,7 +124,7 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 8;
+            const int itemsPerPage = 9;
 
             var viewModel = new ProductsListViewModel
             {
@@ -143,7 +143,7 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 8;
+            const int itemsPerPage = 9;
 
             var viewModel = new ProductsListViewModel
             {

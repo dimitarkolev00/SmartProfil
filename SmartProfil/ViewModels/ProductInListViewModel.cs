@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using SmartProfil.AutoMapper;
 using SmartProfil.Models;
 
