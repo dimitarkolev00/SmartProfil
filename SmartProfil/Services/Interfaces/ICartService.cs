@@ -8,14 +8,16 @@ namespace SmartProfil.Services.Interfaces
 {
     public interface ICartService
     {
-
-        public Task AddToCartAsync(int productId, string userId, int quantity = 1);
-
         public bool IsProductInCart(int productId, string userId);
 
         public ProductCart GetProductFromCart(int productId, string userId);
 
+        public Task RemoveProductByIdAsync(string userId, int productId);
+
+        public Task AddToCartAsync(int productId, string userId, int quantity = 1);
+       
         public List<ProductCartViewModel> GetAllProductsForCartViewModel(string userId);
+       
 
     }
 }

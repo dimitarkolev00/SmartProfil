@@ -62,5 +62,32 @@ namespace SmartProfil.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Remove(int productId)
+        {
+            //Check if this product exists
+            //if (this.productService.ProductExistsById(productId) == false)
+            //{
+            //    this.ModelState.AddModelError("", "This product doesn't exist");
+
+            //    //Store needed info for get request in TempData only if the model state is invalid after doing the complex checks
+            //    TempData[GlobalConstants.ErrorsFromPOSTRequest] = ModelStateHelper.SerialiseModelState(this.ModelState);
+
+            //    //Set notification
+            //    NotificationHelper.SetNotification(this.TempData, NotificationType.Error, "This product doesn't exist");
+
+            //    return this.RedirectToAction(nameof(All));
+            //}
+
+            var user = await this.userManager.GetUserAsync(this.User);
+            var currentUserId = user.Id;
+
+            await this.cartService.RemoveProductByIdAsync(currentUserId, productId);
+
+            this.TempData["Message"] = "Successfully removed item from cart!";
+
+            return this.RedirectToAction(nameof(All));
+        }
+
     }
 }

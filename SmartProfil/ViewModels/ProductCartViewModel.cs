@@ -18,6 +18,6 @@ namespace SmartProfil.ViewModels
 
         public decimal TotalPrice => this.SinglePrice * this.Quantity;
 
-        //public string Image { get; set; }
+        public string Image { get; set; }
     }
 }

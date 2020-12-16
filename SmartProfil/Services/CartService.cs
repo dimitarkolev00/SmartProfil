@@ -39,6 +39,12 @@ namespace SmartProfil.Services
             await this.db.SaveChangesAsync();
         }
 
+        public async Task RemoveProductByIdAsync(string userId, int productId)
+        {
+            this.db.ProductCarts.Remove(GetProductFromCart(productId, userId));
+            await this.db.SaveChangesAsync();
+        }
+
         public List<ProductCartViewModel> GetAllProductsForCartViewModel(string userId)
         {
             return this.db.ProductCarts
@@ -50,7 +56,8 @@ namespace SmartProfil.Services
                     Model = x.Product.Model,
                     ManufacturerName = x.Product.Manufacturer.Name,
                     Quantity = x.Quantity,
-                    SinglePrice = x.Product.UnitPrice
+                    SinglePrice = x.Product.UnitPrice,
+                    Image = "/images/products/" + x.Product.Images.FirstOrDefault().Id + "." + x.Product.Images.FirstOrDefault().Extension
 
                 }).ToList();
         }
@@ -64,6 +71,5 @@ namespace SmartProfil.Services
         {
             return this.db.ProductCarts.FirstOrDefault(x => x.ProductId == productId && x.UserId == userId);
         }
-
     }
 }
