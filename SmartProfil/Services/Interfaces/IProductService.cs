@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SmartProfil.Models;
 using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services.Interfaces
@@ -29,6 +28,6 @@ namespace SmartProfil.Services.Interfaces
 
         T GetById<T>(int id);
 
-        public Product GetProductById(int productId);
+        //public Product GetProductById(int productId);
     }
 }

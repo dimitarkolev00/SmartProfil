@@ -15,7 +15,7 @@ namespace SmartProfil.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(1)]
         [MaxLength(15)]
         public string Name { get; set; }
 

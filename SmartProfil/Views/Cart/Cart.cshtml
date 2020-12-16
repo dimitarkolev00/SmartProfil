@@ -2,6 +2,11 @@
 
 @{ ViewData["Title"] = "My Shopping Cart"; }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-heading alert-dismissible" style="color: mediumseagreen; font-weight: bold; text-align: center">@this.TempData["Message"]</div>
+}
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -24,7 +29,6 @@
                             <div class="media">
                                 <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                                 <div class="media-body">
-                                    @*<h4 class="media-heading"><a href="#"></a></h4>*@
                                     <h5>@product.ManufacturerName @product.Name @product.Model</h5>
                                     <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
                                 </div>

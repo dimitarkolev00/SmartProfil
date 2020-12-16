@@ -138,7 +138,6 @@ namespace SmartProfil.Services
                 .To<T>()
                 .ToList();
         }
-
        
 
         public T GetById<T>(int id)
@@ -151,26 +150,10 @@ namespace SmartProfil.Services
             return product;
         }
 
-        public Product GetProductById(int productId)
-        {
-
-            return this.db.Products.FirstOrDefault(x => x.Id == productId);
-
-            //if (withNavigationalProperties)
-            //{
-            //    return context.Products
-            //        .Include(x => x.ProductComments)
-            //        .ThenInclude(pc => pc.User)
-            //        .Include(x => x.ProductRatings)
-            //        .ThenInclude(x => x.User)
-            //        .Include(x => x.AdditionalImages)
-            //        .FirstOrDefault(x => x.Id == productId);
-            //}
-            //else
-            //{
-            //    return context.Products.FirstOrDefault(x => x.Id == productId);
-            //}
-        }
+        //public Product GetProductById(int productId)
+        //{
+        //    return this.db.Products.FirstOrDefault(x => x.Id == productId);
+        //}
 
         public int GetCount()
         {
