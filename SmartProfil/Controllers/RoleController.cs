@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Data;
@@ -20,6 +21,8 @@ namespace SmartProfil.Controllers
             this.userManager = userManager;
             this.db = db;
         }
+
+        [Authorize]
         public async Task<IActionResult> AddUserToAdmin()
         {
             if (!await this.roleManager.RoleExistsAsync("Admin"))
@@ -29,10 +32,11 @@ namespace SmartProfil.Controllers
                     Name = "Admin"
                 });
             }
-
             var user = await this.userManager.GetUserAsync(this.User);
 
             await this.userManager.AddToRoleAsync(user,"Admin");
+
+            this.TempData["Message"] = "You are added to Admin role!";
 
             return this.Redirect("/");
         }

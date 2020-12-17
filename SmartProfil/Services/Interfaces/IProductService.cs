@@ -27,7 +27,5 @@ namespace SmartProfil.Services.Interfaces
         int GetWindowSillsCount();
 
         T GetById<T>(int id);
-
-        //public Product GetProductById(int productId);
     }
 }

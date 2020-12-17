@@ -4,6 +4,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-heading alert-dismissible" style="color: mediumseagreen; font-weight: bold; text-align: center">
+        @this.TempData["Message"]
+    </div>
+}
+
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="padding-top: 7px">
     <div class="carousel-inner">
         <div class="carousel-item active">

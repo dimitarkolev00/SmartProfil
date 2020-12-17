@@ -26,17 +26,12 @@ namespace SmartProfil.Controllers
 
             var productsInCart = this.cartService.GetAllProductsForCartViewModel(currentUserId);
 
-            var model = new  AllCartProducts()
+            var model = new AllCartProducts()
             {
                 AllCartItems = productsInCart
             };
 
             return this.View("Cart", model);
-
-            //var complexModel = new ComplexModel<List<BuyProductInputModel>, List<ProductCartViewModel>>
-            //{
-            //    ViewModel = productsInCart
-            //};
         }
 
         [HttpPost]
@@ -50,7 +45,6 @@ namespace SmartProfil.Controllers
             var user = await this.userManager.GetUserAsync(this.User);
             var currentUserId = user.Id;
 
-            
             var productId = inputModel.ProductId;
             var quantity = inputModel.Quantity;
 
@@ -59,26 +53,11 @@ namespace SmartProfil.Controllers
             this.TempData["Message"] = "New item added to cart successfully!";
 
             return this.RedirectToAction(nameof(this.All));
-
         }
 
         [HttpPost]
         public async Task<IActionResult> Remove(int productId)
         {
-            //Check if this product exists
-            //if (this.productService.ProductExistsById(productId) == false)
-            //{
-            //    this.ModelState.AddModelError("", "This product doesn't exist");
-
-            //    //Store needed info for get request in TempData only if the model state is invalid after doing the complex checks
-            //    TempData[GlobalConstants.ErrorsFromPOSTRequest] = ModelStateHelper.SerialiseModelState(this.ModelState);
-
-            //    //Set notification
-            //    NotificationHelper.SetNotification(this.TempData, NotificationType.Error, "This product doesn't exist");
-
-            //    return this.RedirectToAction(nameof(All));
-            //}
-
             var user = await this.userManager.GetUserAsync(this.User);
             var currentUserId = user.Id;
 
@@ -88,6 +67,5 @@ namespace SmartProfil.Controllers
 
             return this.RedirectToAction(nameof(All));
         }
-
     }
 }

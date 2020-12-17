@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Models;
 using SmartProfil.ViewModels;
 
@@ -15,9 +14,7 @@ namespace SmartProfil.Services.Interfaces
         public Task RemoveProductByIdAsync(string userId, int productId);
 
         public Task AddToCartAsync(int productId, string userId, int quantity = 1);
-       
-        public List<ProductCartViewModel> GetAllProductsForCartViewModel(string userId);
-       
 
+        public List<ProductCartViewModel> GetAllProductsForCartViewModel(string userId);
     }
 }

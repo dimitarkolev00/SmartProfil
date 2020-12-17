@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using SmartProfil.AutoMapper;
 using SmartProfil.Data;
 using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
-using SmartProfil.ViewModels;
 using SmartProfil.ViewModels.InputModels;
 
 namespace SmartProfil.Services
@@ -138,7 +135,6 @@ namespace SmartProfil.Services
                 .To<T>()
                 .ToList();
         }
-       
 
         public T GetById<T>(int id)
         {
@@ -149,11 +145,6 @@ namespace SmartProfil.Services
 
             return product;
         }
-
-        //public Product GetProductById(int productId)
-        //{
-        //    return this.db.Products.FirstOrDefault(x => x.Id == productId);
-        //}
 
         public int GetCount()
         {

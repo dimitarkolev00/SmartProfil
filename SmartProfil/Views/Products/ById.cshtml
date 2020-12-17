@@ -3,9 +3,8 @@
 @{
     this.ViewData["Title"] = @Model.Name + " " + @Model.Model;
 }
-<h2>@this.ViewData["Title"]</h2>
 
-<div>
+<div style="padding-top: 15px">
     <div class="row">
         <div class="col-lg-4">
             <div>
@@ -20,8 +19,10 @@
                         <img src="@Model.ManufacturerImage" class="embed-responsive" style="width: 180px; height: 80px">
                     </div>
                 </div>
-                <span style="font-weight: bold">@Model.UnitPrice лв.</span>
+                @*<span style="font-weight: bold">@Model.UnitPrice лв.</span>*@
+                <h5>@Model.UnitPrice лв.</h5>
                 <div>
+                    <h4 style="font-weight: bold; padding-top: 12px">Description</h4>
                     <p style="padding-top: 8px">@Model.Description</p>
                 </div>
                 <div class="">
@@ -34,9 +35,9 @@
                         <div class="input-group " style="padding-top: 12px" align="left">
                             <p align="left" style="font-weight: bold">
                                 Quantity:
-                                <input class="form-control col-md-4" type="number" value="1" name="quantity" id="quantity">
+                                <input class="form-control col-md-6" type="number" value="1" name="quantity" id="quantity">
                             </p>
-                            <button type="submit" class="btn btn-primary" style="color: mediumseagreen; height: 50px;"> Add to cart </button>
+                            <button type="submit" class="btn btn-primary" style="color: mediumseagreen; height: 60px;"> Add to cart </button>
                         </div>
                     }
                 </div>
@@ -47,6 +48,7 @@
 <div class="row">
     <div class="col-md-12">
         <div>
+            <hr/>
             <h4 style="font-weight: bold">Specifications</h4>
             <div>
                 <ul>
@@ -60,7 +62,7 @@
                     }
                     @if (Model.Width.HasValue)
                     {
-                        <li>Weight = @Model.Width mm.</li>
+                        <li>Width = @Model.Width mm.</li>
                     }
                 </ul>
                 <p class="col-md-8">

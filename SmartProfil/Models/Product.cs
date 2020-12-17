@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using SmartProfil.Models.Enum;
 
 namespace SmartProfil.Models
 {
@@ -11,7 +10,6 @@ namespace SmartProfil.Models
             this.Feedbacks = new HashSet<Feedback>();
             this.Images = new HashSet<Image>();
         }
-
         public int Id { get; set; }
 
         [Required]

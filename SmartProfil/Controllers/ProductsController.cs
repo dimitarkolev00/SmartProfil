@@ -12,6 +12,8 @@ namespace SmartProfil.Controllers
 {
     public class ProductsController : Controller
     {
+        private const int ProductsPerPage = 6;
+
         private readonly IProductService productService;
         private readonly ICategoriesService categoriesService;
         private readonly IManufacturersService manufacturersService;
@@ -78,7 +80,6 @@ namespace SmartProfil.Controllers
 
             return this.RedirectToAction("All");
         }
-
         public IActionResult All(int id = 1)
         {
             if (id <= 0)
@@ -86,18 +87,15 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 9;
-
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetCount(),
-                Products = this.productService.GetAll<ProductInListViewModel>(id, itemsPerPage),
-                ItemsPerPage = itemsPerPage
+                Products = this.productService.GetAll<ProductInListViewModel>(id, ProductsPerPage),
+                ItemsPerPage = ProductsPerPage
             };
             return this.View(viewModel);
         }
-
         public IActionResult AllProfiles(int id = 1)
         {
             if (id <= 0)
@@ -105,18 +103,15 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 9;
-
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetProfilesCount(),
-                Products = this.productService.GetAllProfiles<ProductInListViewModel>(id, itemsPerPage),
-                ItemsPerPage = itemsPerPage
+                Products = this.productService.GetAllProfiles<ProductInListViewModel>(id, ProductsPerPage),
+                ItemsPerPage = ProductsPerPage
             };
             return this.View(viewModel);
         }
-
         public IActionResult AllAccessories(int id = 1)
         {
             if (id <= 0)
@@ -124,18 +119,15 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 9;
-
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetAccessoriesCount(),
-                Products = this.productService.GetAllAccessories<ProductInListViewModel>(id, itemsPerPage),
-                ItemsPerPage = itemsPerPage
+                Products = this.productService.GetAllAccessories<ProductInListViewModel>(id, ProductsPerPage),
+                ItemsPerPage = ProductsPerPage
             };
             return this.View(viewModel);
         }
-
         public IActionResult AllWindowSills(int id = 1)
         {
             if (id <= 0)
@@ -143,18 +135,15 @@ namespace SmartProfil.Controllers
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 9;
-
             var viewModel = new ProductsListViewModel
             {
                 PageNumber = id,
                 ProductsCount = this.productService.GetWindowSillsCount(),
-                Products = this.productService.GetAllWindowSills<ProductInListViewModel>(id, itemsPerPage),
-                ItemsPerPage = itemsPerPage
+                Products = this.productService.GetAllWindowSills<ProductInListViewModel>(id, ProductsPerPage),
+                ItemsPerPage = ProductsPerPage
             };
             return this.View(viewModel);
         }
-
         public IActionResult ById(int id)
         {
             var productViewModel = this.productService.GetById<SingleProductViewModel>(id);

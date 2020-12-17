@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper;
 using SmartProfil.AutoMapper;
 using SmartProfil.Models;
@@ -38,10 +37,6 @@ namespace SmartProfil.ViewModels
 
         public double? Width { get; set; }
 
-        //public virtual ICollection<Feedback> Feedbacks { get; set; }
-
-        //public virtual ICollection<Image> Images { get; set; }
-
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Product, SingleProductViewModel>()
@@ -53,7 +48,6 @@ namespace SmartProfil.ViewModels
                     opt.MapFrom(x =>
                         "/images/logos/" + x.Manufacturer.Images.FirstOrDefault().Id + "." +
                         x.Manufacturer.Images.FirstOrDefault().Extension));
-
         }
     }
 }

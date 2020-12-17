@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartProfil.Data;
-using SmartProfil.Models;
 using SmartProfil.Services.Interfaces;
 using SmartProfil.ViewModels;
 
@@ -15,7 +13,7 @@ namespace SmartProfil.Controllers
         private readonly ApplicationDbContext db;
         private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger, 
+        public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext db,
             IProductService productService)
         {
@@ -23,7 +21,6 @@ namespace SmartProfil.Controllers
             this.db = db;
             this.productService = productService;
         }
-
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel()
@@ -49,6 +46,5 @@ namespace SmartProfil.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

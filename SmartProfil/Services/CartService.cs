@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SmartProfil.Data;
@@ -58,7 +57,6 @@ namespace SmartProfil.Services
                     Quantity = x.Quantity,
                     SinglePrice = x.Product.UnitPrice,
                     Image = "/images/products/" + x.Product.Images.FirstOrDefault().Id + "." + x.Product.Images.FirstOrDefault().Extension
-
                 }).ToList();
         }
 

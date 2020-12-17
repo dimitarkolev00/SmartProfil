@@ -50,7 +50,6 @@ namespace SmartProfil.AutoMapper
                 });
             MapperInstance = new Mapper(new MapperConfiguration(config));
         }
-
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)
         {
             var fromMaps = from t in types
@@ -67,7 +66,6 @@ namespace SmartProfil.AutoMapper
 
             return fromMaps;
         }
-
         private static IEnumerable<TypesMap> GetToMaps(IEnumerable<Type> types)
         {
             var toMaps = from t in types
@@ -84,7 +82,6 @@ namespace SmartProfil.AutoMapper
 
             return toMaps;
         }
-
         private static IEnumerable<IHaveCustomMappings> GetCustomMappings(IEnumerable<Type> types)
         {
             var customMaps = from t in types
@@ -96,7 +93,6 @@ namespace SmartProfil.AutoMapper
 
             return customMaps;
         }
-
         private class TypesMap
         {
             public Type Source { get; set; }

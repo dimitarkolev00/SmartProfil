@@ -8,7 +8,7 @@ namespace SmartProfil.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Authorize(Roles = "Admin")]
-    public class CategoryController:Controller
+    public class CategoryController : Controller
     {
         private readonly ICategoriesService categoriesService;
 

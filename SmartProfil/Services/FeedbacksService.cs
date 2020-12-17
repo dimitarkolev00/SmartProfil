@@ -24,7 +24,7 @@ namespace SmartProfil.Services
                 feedback = new Feedback
                 {
                      ProductId = productId,
-                     UserId = userId
+                     UserId = userId,
                 };
 
                 await this.db.Feedbacks.AddAsync(feedback);

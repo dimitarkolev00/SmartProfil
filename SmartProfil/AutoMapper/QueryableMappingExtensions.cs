@@ -18,7 +18,6 @@ namespace SmartProfil.AutoMapper
 
             return source.ProjectTo(AutoMapperConfig.MapperInstance.ConfigurationProvider, null, membersToExpand);
         }
-
         public static IQueryable<TDestination> To<TDestination>(
             this IQueryable source,
             object parameters)

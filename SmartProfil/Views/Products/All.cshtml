@@ -5,7 +5,9 @@
 
 @if (this.TempData.ContainsKey("Message"))
 {
-    <div class="alert alert-success alert-dismissible" style="padding-top: 30px">@this.TempData["Message"]</div>
+    <div class="alert alert-heading alert-dismissible" style="color: mediumseagreen; font-weight: bold; text-align: center">
+        @this.TempData["Message"]
+    </div>
 }
 
 <h2 style=" color: purple">@this.ViewData["Title"]</h2>
