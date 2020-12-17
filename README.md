@@ -18,9 +18,13 @@
 - ASP.NET CORE areas
 - ASP.NET CORE MVC and Razor Pages
 - SQL Server and Microsoft SQL Server
-- Entity Framework Core
+- Entity Framework Core 5.0
 - Custom database seeder
 - Bootstrap 4.0
+- HTML5
+- CSS
+- DataTables
+- LazyKit
 - Automapper
 - Moq
 - XUnit
@@ -35,6 +39,15 @@
 - SendGrid
 - Facebook for developers API
 - etc..
+
+### :hammer: Backend
+The web project contains:
+* 2 different areas: Identity, Administration
+* 2 Roles: Admin, User
+* 10 controllers
+* 20+ views
+* 24 service methods
+
 
 ## :wrench: DB Diagram
 ![](https://i.ibb.co/2YNnSbJ/Screenshot-2020-12-17-162545.png)
