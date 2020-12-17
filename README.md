@@ -11,23 +11,23 @@
 ![](https://i.ibb.co/bXBGgt2/Logo-White.jpg)
 
 ## :hammer: Built With
-Visual Studio Enterprise
-.NET 5.0
-ASP.NET CORE 5.0
-ASP.NET CORE views and partial views and sections and view components
-ASP.NET CORE areas
-ASP.NET CORE MVC and Razor Pages
-SQL Server and Microsoft SQL Server
-Entity Framework Core
-Custom database seeder
-Bootstrap 4.0
-Automapper
-Moq
-XUnit
-Javascript
-JQuery and any kind of jQuery plugins such as DataTables and jquery animations
-Lots of boostrap themes and templates
-GoogleMaps for maps
+- Visual Studio Enterprise
+- .NET 5.0
+- ASP.NET CORE 5.0
+- ASP.NET CORE views and partial views and sections and view components
+- ASP.NET CORE areas
+- ASP.NET CORE MVC and Razor Pages
+- SQL Server and Microsoft SQL Server
+- Entity Framework Core
+- Custom database seeder
+- Bootstrap 4.0
+- Automapper
+- Moq
+- XUnit
+- Javascript
+- JQuery and any kind of jQuery plugins such as DataTables and jquery animations
+- Lots of boostrap themes and templates
+- GoogleMaps for maps
 
 ### :hammer: And in the future hopefully also with           
 - SignalR
