@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SmartProfil.Controllers;
 using SmartProfil.Data;
 using SmartProfil.Models;
 using SmartProfil.Services;
@@ -34,7 +34,7 @@ namespace SmartProfil.Tests
 
             var service = new CartService(dbContext);
 
-            var result = service.GetProductFromCart(2,"miti");
+            var result = service.GetProductFromCart(2, "miti");
 
             Assert.NotNull(result);
             Assert.Equal("miti", result.UserId);
@@ -49,10 +49,141 @@ namespace SmartProfil.Tests
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
             var service = new CartService(dbContext);
 
-            var result = service.GetProductFromCart(2,"mitko");
+            var result = service.GetProductFromCart(2, "mitko");
 
             Assert.Null(result);
-          
+        }
+
+        [Fact]
+        public void IsProductInCartShouldReturnTrueIfProductIsInCart()
+        {
+            var productCart = new ProductCart()
+            {
+                ProductId = 3,
+                Quantity = 2,
+                UserId = "mitko2"
+            };
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+            dbContext.ProductCarts.Add(productCart);
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.IsProductInCart(3, "mitko2");
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void IsProductInCartShouldReturnFalseIfProductIsNotInCart()
+        {
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            var service = new CartService(dbContext);
+
+            var result = service.IsProductInCart(4, "mitko2");
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void RemoveProductByIdAsyncShouldRemoveIfProductExists()
+        {
+            var productCart = new ProductCart()
+            {
+                ProductId = 3,
+                Quantity = 2,
+                UserId = "dimitar"
+            };
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            dbContext.ProductCarts.Add(productCart);
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.RemoveProductByIdAsync("dimitar", 3);
+
+            Assert.False(!dbContext.ProductCarts.Any());
+        }
+
+        [Fact]
+        public void RemoveProductByIdAsyncShouldNotRemoveIfProductDoesNotExists()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            var service = new CartService(dbContext);
+
+            var result = service.RemoveProductByIdAsync("dimitar", 3);
+
+            Assert.False(result.Status == TaskStatus.Faulted);
+        }
+
+        [Fact]
+        public void AddToCartAsyncShouldAddToCartIfProductIsNotInCartYet()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            var service = new CartService(dbContext);
+
+            var result = service.AddToCartAsync(12, "kris", 10);
+
+            Assert.True(dbContext.ProductCarts.Any(x => x.UserId == "kris"));
+        }
+
+        [Fact]
+        public void AddToCartAsyncShouldIncreaseProductQuantityIfProductIsAlreadyAddedToCart()
+        {
+            var productCart = new ProductCart()
+            {
+                ProductId = 3,
+                Quantity = 2,
+                UserId = "dimitar"
+            };
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            dbContext.ProductCarts.Add(productCart);
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.AddToCartAsync(3, "dimitar", 3);
+
+            var product = service.GetProductFromCart(3, "dimitar");
+
+            Assert.Equal(5, product.Quantity);
+        }
+
+        [Fact]
+        public void GetAllProductsForCartViewModelShouldNotReturnIfProductIsNotFound()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("test");
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.GetAllProductsForCartViewModel("dimitar");
+
+            Assert.True(result.Count == 0);
         }
     }
 }
