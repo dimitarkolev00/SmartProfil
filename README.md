@@ -57,6 +57,16 @@ The web project contains:
  
  - Index Page 
  ![indexpage](https://i.ibb.co/RSFLCHZ/Screenshot-2020-12-17-172223.png) 
+ - Contacts Page
+ ![indexpage](https://i.ibb.co/Hn0gnft/Screenshot-2020-12-17-175706.png) 
+ - Cart
+ ![indexpage](https://i.ibb.co/cr7QSMn/Screenshot-2020-12-17-175734.png) 
+ - Single product page
+ ![indexpage](https://i.ibb.co/DYRpd0X/Screenshot-2020-12-17-175639.png) 
+ - Admin page
+ ![indexpage](https://i.ibb.co/CWj0fR0/Screenshot-2020-12-17-175819.png) 
+ - All profiles page
+ ![indexpage](https://i.ibb.co/J7VLqs5/Screenshot-2020-12-17-180246.png) 
 
 ## :dash: Road To
 - Work on shop section(logic, user access, Fron-End....)
