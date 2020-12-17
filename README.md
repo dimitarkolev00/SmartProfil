@@ -52,6 +52,12 @@ The web project contains:
 ## :wrench: DB Diagram
 ![](https://i.ibb.co/2YNnSbJ/Screenshot-2020-12-17-162545.png)
 
+ Website Screenshots
+ ---
+ 
+ - Index Page 
+ ![indexpage](https://i.ibb.co/RSFLCHZ/Screenshot-2020-12-17-172223.png) 
+
 ## :dash: Road To
 - Work on shop section(logic, user access, Fron-End....)
 - Integrate MasterCard and any kind of payment methods
