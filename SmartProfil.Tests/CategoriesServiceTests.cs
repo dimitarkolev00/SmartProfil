@@ -37,7 +37,7 @@ namespace SmartProfil.Tests
         public void GetAllAsKeyValuePairsShouldReturnKeyValuePair()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase("test2");
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             var service = new CategoriesService(dbContext);

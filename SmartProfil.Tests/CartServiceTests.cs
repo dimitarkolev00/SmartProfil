@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartProfil.Data;
@@ -27,7 +28,7 @@ namespace SmartProfil.Tests
             };
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
             dbContext.ProductCarts.Add(productCart);
             dbContext.SaveChanges();
@@ -45,7 +46,7 @@ namespace SmartProfil.Tests
         public void GetProductFromCartShouldReturnNullIfProductDoesNotExists()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
             var service = new CartService(dbContext);
 
@@ -65,7 +66,7 @@ namespace SmartProfil.Tests
             };
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
             dbContext.ProductCarts.Add(productCart);
             dbContext.SaveChanges();
@@ -82,7 +83,7 @@ namespace SmartProfil.Tests
         {
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             var service = new CartService(dbContext);
@@ -103,7 +104,7 @@ namespace SmartProfil.Tests
             };
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             dbContext.ProductCarts.Add(productCart);
@@ -113,28 +114,28 @@ namespace SmartProfil.Tests
 
             var result = service.RemoveProductByIdAsync("dimitar", 3);
 
-            Assert.False(!dbContext.ProductCarts.Any());
+            Assert.False(dbContext.ProductCarts.Any());
         }
 
         [Fact]
         public void RemoveProductByIdAsyncShouldNotRemoveIfProductDoesNotExists()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             var service = new CartService(dbContext);
 
             var result = service.RemoveProductByIdAsync("dimitar", 3);
 
-            Assert.False(result.Status == TaskStatus.Faulted);
+            Assert.True(result.Status == TaskStatus.Faulted);
         }
 
         [Fact]
         public void AddToCartAsyncShouldAddToCartIfProductIsNotInCartYet()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             var service = new CartService(dbContext);
@@ -155,7 +156,7 @@ namespace SmartProfil.Tests
             };
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             dbContext.ProductCarts.Add(productCart);
@@ -163,7 +164,7 @@ namespace SmartProfil.Tests
 
             var service = new CartService(dbContext);
 
-            var result = service.AddToCartAsync(3, "dimitar", 3);
+            service.AddToCartAsync(3, "dimitar", 3);
 
             var product = service.GetProductFromCart(3, "dimitar");
 
@@ -174,7 +175,7 @@ namespace SmartProfil.Tests
         public void GetAllProductsForCartViewModelShouldNotReturnIfProductIsNotFound()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("test");
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
             var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
             dbContext.SaveChanges();
