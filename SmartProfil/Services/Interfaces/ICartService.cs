@@ -16,5 +16,9 @@ namespace SmartProfil.Services.Interfaces
         public Task AddToCartAsync(int productId, string userId, int quantity = 1);
 
         public List<ProductCartViewModel> GetAllProductsForCartViewModel(string userId);
+
+        public List<ProductCartViewModel> GetAllPreviousOrders(string userId);
+
+        public Task RemoveAllProductsWhenOrderIsCompleted(string userId);
     }
 }

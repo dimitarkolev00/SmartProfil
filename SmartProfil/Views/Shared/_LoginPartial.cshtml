@@ -3,24 +3,32 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a class="nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="color: purple"><i class="fas fa-user-cog" style="padding-right: 6px"></i>Hello @User.Identity.Name.Substring(0, @User.Identity.Name.IndexOf("@")) !</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link " style="color: purple">Logout<i class="fas fa-sign-out-alt" style="padding-left: 6px"></i></button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register" style="color: purple"><i class="fas fa-clipboard-list" style="padding-right: 6px"></i>Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login" style="color: purple"><i class="fas fa-sign-in-alt" style="padding-right: 6px"></i>Login</a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a  class="nav-link dropdown-toggle"  title="Manage"
+               style="color: purple" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-cog" style="padding-right: 6px" >
+                </i>Hello @User.Identity.Name.Substring(0, @User.Identity.Name.IndexOf("@")) !
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">User settings</a>
+                <a class="dropdown-item" asp-area="" asp-action="GetPreviousOrders" asp-controller="Orders">Previous orders</a>
+            </div>
+        </li>
+        <li class="nav-item" >
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link " style="color: purple">Logout<i class="fas fa-sign-out-alt" style="padding-left: 6px"></i></button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register" style="color: purple"><i class="fas fa-clipboard-list" style="padding-right: 6px"></i>Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login" style="color: purple"><i class="fas fa-sign-in-alt" style="padding-right: 6px"></i>Login</a>
+        </li>
+    }
 </ul>

@@ -1,4 +1,5 @@
-﻿@{ ViewData["Title"] = "Checkout"; }
+﻿@model SmartProfil.ViewModels.InputModels.OrderFormInputModel
+@{ ViewData["Title"] = "Checkout"; }
 
 <!DOCTYPE html>
 <html>
@@ -9,68 +10,82 @@
     <div class="row" style="padding-top: 15px;">
         <div class="col-75">
             <div class="container" style="background-color: #f2f2f2; border: 1px solid lightgrey;">
-                <form action="">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com">
-                            <label for="adr"><i class="far fa-address-card"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                            <label for="city"><i class="fas fa-university"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York">
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY">
-                                </div>
-                                <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001">
-                                </div>
-                            </div>
+                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            <input asp-for="FullName" id="fname" placeholder="John M. Doe">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input asp-for="Email" type="text" id="email" placeholder="john@example.com">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                            <label for="adr"><i class="far fa-address-card"></i> Address</label>
+                            <input asp-for="Address" id="adr" placeholder="542 W. 15th Street">
+                            <span asp-validation-for="Address" class="text-danger"></span>
+
+                            <label for="city"><i class="fas fa-university"></i> City</label>
+                            <input asp-for="City" id="city" placeholder="New York">
+                            <span asp-validation-for="City" class="text-danger"></span>
+
+                            <label for="city"><i class="fas fa-building"></i> Company Name</label>
+                            <input asp-for="CompanyName" id="city" placeholder="SmartProfil EOOD">
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
                         </div>
 
                         <div class="col-50">
                             <h3>Payment</h3>
                             <label for="fname">Accepted Cards</label>
                             <div class="icon-container">
-                                <i class="fab fa-cc-visa" style="color:navy;"></i>
-                                <i class="fab fa-cc-amex" style="color:blue;"></i>
-                                <i class="fab fa-cc-mastercard" style="color:red;"></i>
-                                <i class="fab fa-cc-discover" style="color:orange;"></i>
+                                <i class="fab fa-cc-visa" style="color: navy;"></i>
+                                <i class="fab fa-cc-amex" style="color: blue;"></i>
+                                <i class="fab fa-cc-mastercard" style="color: red;"></i>
+                                <i class="fab fa-cc-discover" style="color: orange;"></i>
                             </div>
                             <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <input asp-for="NameOnCard" id="cname"  placeholder="John More Doe">
+                            <span asp-validation-for="NameOnCard" class="text-danger"></span>
+
                             <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <input asp-for="CardNumber" id="ccnum" placeholder="1111-2222-3333-4444">
+                            <span asp-validation-for="CardNumber" class="text-danger"></span>
+
                             <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                            <input asp-for="ExpMonth" id="expmonth" placeholder="September">
+                            <span asp-validation-for="ExpMonth" class="text-danger"></span>
 
                             <div class="row">
                                 <div class="col-50">
                                     <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                    <input asp-for="ExpYear" id="expyear" placeholder="2018">
+                                    <span asp-validation-for="ExpYear" class="text-danger"></span>
                                 </div>
                                 <div class="col-50">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                    <input asp-for="CVV" id="cvv" placeholder="352">
+                                    <span asp-validation-for="CVV" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <label>
                         <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                     </label>
-                    <input type="submit" value="Continue to checkout" class="btn" 
-                           style="background-color: #4CAF50; color: white; width: 100%;font-size: 17px; cursor: pointer">
+                    <input type="submit" value="Finish order" class="btn btn-primary"
+                           style="color: mediumseagreen; width: 100%; font-size: 19px; cursor: pointer">
                 </form>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

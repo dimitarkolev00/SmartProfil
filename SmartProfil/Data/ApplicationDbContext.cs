@@ -33,6 +33,8 @@ namespace SmartProfil.Data
 
         public DbSet<ProductCart> ProductCarts { get; set; }
 
+        public DbSet<OrderFormInfo> OrderFormInfo { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

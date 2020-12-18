@@ -30,8 +30,8 @@ namespace SmartProfil.Services
                 {
                     UserId = userId,
                     ProductId = productId,
-                    Quantity = quantity
-
+                    Quantity = quantity,
+                    IsDeleted = false
                 });
             }
 
@@ -48,6 +48,24 @@ namespace SmartProfil.Services
         {
             return this.db.ProductCarts
                 .Where(x => x.UserId == userId)
+                .Where(x => x.IsDeleted == false)
+                .Select(x => new ProductCartViewModel
+                {
+                    Id = x.Product.Id,
+                    Name = x.Product.Name,
+                    Model = x.Product.Model,
+                    ManufacturerName = x.Product.Manufacturer.Name,
+                    Quantity = x.Quantity,
+                    SinglePrice = x.Product.UnitPrice,
+                    Image = "/images/products/" + x.Product.Images.FirstOrDefault().Id + "." + x.Product.Images.FirstOrDefault().Extension
+                }).ToList();
+        }
+
+        public List<ProductCartViewModel> GetAllPreviousOrders(string userId)
+        {
+            return this.db.ProductCarts
+                .Where(x => x.UserId == userId)
+                .Where(x => x.IsDeleted == true)
                 .Select(x => new ProductCartViewModel
                 {
                     Id = x.Product.Id,
@@ -69,5 +87,22 @@ namespace SmartProfil.Services
         {
             return this.db.ProductCarts.FirstOrDefault(x => x.ProductId == productId && x.UserId == userId);
         }
+        public List<ProductCart> GetAllProductsFromCart(string userId)
+        {
+            return this.db.ProductCarts.
+                Where(x => x.UserId == userId)
+                .ToList();
+        }
+
+        public async Task RemoveAllProductsWhenOrderIsCompleted(string userId)
+        {
+            var products = this.GetAllProductsFromCart(userId);
+            foreach (var product in products)
+            {
+                product.IsDeleted = true;
+            }
+            await this.db.SaveChangesAsync();
+        }
+
     }
 }

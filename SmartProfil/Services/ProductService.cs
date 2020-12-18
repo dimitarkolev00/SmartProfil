@@ -69,10 +69,9 @@ namespace SmartProfil.Services
 
             await this.db.Products.AddAsync(product);
             await this.db.SaveChangesAsync();
-
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int productsPerPage )
+        public IEnumerable<T> GetAll<T>(int page, int productsPerPage)
         {
             var products = this.db.Products
                 .Where(x => x.IsDeleted == false)
@@ -85,7 +84,7 @@ namespace SmartProfil.Services
             return products;
         }
 
-        public IEnumerable<T> GetAllProfiles<T>(int page, int productsPerPage )
+        public IEnumerable<T> GetAllProfiles<T>(int page, int productsPerPage)
         {
             var products = this.db.Products
                 .Where(x => x.IsDeleted == false)

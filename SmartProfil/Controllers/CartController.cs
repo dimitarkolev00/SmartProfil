@@ -67,5 +67,17 @@ namespace SmartProfil.Controllers
 
             return this.RedirectToAction(nameof(All));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveAll()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var currentUserId = user.Id;
+
+            //await this.cartService.RemoveProductByIdAsync(currentUserId, productId);
+
+            return this.RedirectToAction(nameof(All));
+        }
+
     }
 }

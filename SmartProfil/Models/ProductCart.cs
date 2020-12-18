@@ -14,5 +14,7 @@ namespace SmartProfil.Models
 
         [Required]
         public int Quantity { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

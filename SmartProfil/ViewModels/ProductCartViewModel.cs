@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace SmartProfil.ViewModels
+﻿namespace SmartProfil.ViewModels
 {
     public class ProductCartViewModel
     {
