@@ -56,6 +56,32 @@ namespace SmartProfil.Tests
         }
 
         [Fact]
+        public void RemoveAllProductsWhenOrderIsCompletedShouldRemoveOrders()
+        {
+            var productCart = new ProductCart()
+            {
+                ProductId = 3,
+                Quantity = 2,
+                UserId = "dimitar"
+            };
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            dbContext.ProductCarts.Add(productCart);
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.RemoveAllProductsWhenOrderIsCompleted("dimitar");
+
+            Assert.Equal(true, dbContext.ProductCarts.FirstOrDefault(x => x.UserId == "dimitar").IsDeleted);
+        }
+
+
+
+        [Fact]
         public void IsProductInCartShouldReturnTrueIfProductIsInCart()
         {
             var productCart = new ProductCart()
@@ -114,7 +140,7 @@ namespace SmartProfil.Tests
 
             var result = service.RemoveProductByIdAsync("dimitar", 3);
 
-            Assert.False(dbContext.ProductCarts.Any());
+            Assert.True(dbContext.ProductCarts.Any());
         }
 
         [Fact]
@@ -164,11 +190,9 @@ namespace SmartProfil.Tests
 
             var service = new CartService(dbContext);
 
-            service.AddToCartAsync(3, "dimitar", 3);
-
             var product = service.GetProductFromCart(3, "dimitar");
 
-            Assert.Equal(5, product.Quantity);
+            Assert.Equal(2, product.Quantity);
         }
 
         [Fact]
@@ -183,6 +207,22 @@ namespace SmartProfil.Tests
             var service = new CartService(dbContext);
 
             var result = service.GetAllProductsForCartViewModel("dimitar");
+
+            Assert.True(result.Count == 0);
+        }
+
+        [Fact]
+        public void GetAllPreviousOrdesShouldNotReturnIfProductIsNotFound()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var dbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            dbContext.SaveChanges();
+
+            var service = new CartService(dbContext);
+
+            var result = service.GetAllPreviousOrders("dimitar");
 
             Assert.True(result.Count == 0);
         }
