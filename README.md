@@ -3,7 +3,7 @@
 **SmartProfil Website** is my defense project for **C# ASP.NET Core MVC** course at [SoftUni](https://softuni.bg/ "SoftUni") (October-December 2020).
 
 ## :pencil: Description
-**SmartProfil** is a shopping website which sells all kinds of aluminium and PVC window profiles, window sills and a wide variety of window and door accessories. It has a wide variety of products with their categories, manufacturers and a product cart. There are also modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content for certain actions.           
+**SmartProfil** is a shopping website which sells all kinds of aluminium and PVC window profiles, window sills and a lot of accessories. The website has a wide variety of products with their categories, manufacturers, descriptions and a product cart. There are also modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content for certain actions.           
 
 - As an admin you can edit, add and remove categories, manufacturers, product material types and products. You can also buy products yourself. 
 
