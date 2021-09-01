@@ -56,7 +56,7 @@ The web project contains:
  ---
  
  - Index Page 
- ![indexpage](https://ibb.co/s6Kb4p5) 
+ ![indexpage](https://i.ibb.co/yY6dCmh/Screenshot-2020-12-17-172223.png) 
  - Contacts Page
  ![indexpage](https://i.ibb.co/Hn0gnft/Screenshot-2020-12-17-175706.png) 
  - Cart
