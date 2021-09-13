@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 SmartProfil/appsettings.json
 appsettings.json
+appsettings.Development.json
