@@ -67,6 +67,8 @@ The web project contains:
  ![indexpage](https://i.ibb.co/CWj0fR0/Screenshot-2020-12-17-175819.png) 
  - All profiles page
  ![indexpage](https://i.ibb.co/J7VLqs5/Screenshot-2020-12-17-180246.png) 
+ - Checkout page
+ ![indexpage](https://i.ibb.co/9ytZHSc/Screenshot-28.png) 
 
 ## :dash: Road To
 - Work on shop section(logic, user access, Fron-End....)
