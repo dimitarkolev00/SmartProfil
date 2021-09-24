@@ -70,6 +70,7 @@ The web project contains:
  - Checkout page
  ![indexpage](https://i.ibb.co/9ytZHSc/Screenshot-28.png) 
 
+
 ## :dash: Road To
 - Work on shop section(logic, user access, Fron-End....)
 - Integrate MasterCard and any kind of payment methods
