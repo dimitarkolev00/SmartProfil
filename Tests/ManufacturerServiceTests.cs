@@ -55,7 +55,7 @@ namespace SmartProfil.Tests
 
             var result = service.GetAllAsKeyValuePairs();
 
-            Assert.True(!result.Any());
+            Assert.False(!result.Any());
         }
 
     }

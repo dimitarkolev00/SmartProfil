@@ -140,7 +140,7 @@ namespace SmartProfil.Tests
 
             var result = service.RemoveProductByIdAsync("dimitar", 3);
 
-            Assert.True(dbContext.ProductCarts.Any());
+            Assert.False(dbContext.ProductCarts.Any());
         }
 
         [Fact]

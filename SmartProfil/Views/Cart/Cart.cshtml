@@ -9,8 +9,7 @@
     @this.TempData["Message"]
 </div>}
 
-@{
-    var shippingCost = 6.90;
+@{ var shippingCost = 6.90;
 
     decimal subTotal = 0;
 
@@ -19,16 +18,15 @@
         subTotal += product.TotalPrice;
     }
 
-    var totalPrice = subTotal + (decimal)shippingCost;
-} 
+    var totalPrice = subTotal + (decimal)shippingCost; }
 
 @if (Model.AllCartItems.Count() != 0)
 {
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-10 col-md-offset-1">
-                <table class="table table-hover">
-                    <thead>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
                     <tr>
                         <th>Product</th>
                         <th>Quantity</th>
@@ -36,35 +34,33 @@
                         <th class="text-center">Total</th>
                         <th> </th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
 
                     @foreach (var product in Model.AllCartItems)
                     {
-                        <tr>
-                            <td class="col-sm-8 col-md-6">
-                                <div class="media">
-                                    <a class="pull-left" asp-controller="Products" asp-action="ById" asp-route-id="@product.Id"><img src="@product.Image" style="width: 82px; height: 82px;"></a>
-                                    <div class="media-body" style="padding-left: 16px">
-                                        <h5><a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id" style="font-weight: bold">@product.ManufacturerName @product.Name @product.Model</a></h5>
-                                        <span style="font-weight: bold">Status: </span><span class="text-success"><strong>Leaves warehouse in 2 - 3 days</strong></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <h6>@product.Quantity</h6>
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>@product.SinglePrice</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>@product.TotalPrice</strong></td>
-                            <td class="col-sm-1 col-md-1">
-                                @using (Html.BeginForm("Remove", "Cart",
-                                    new {productId = product.Id}, FormMethod.Post))
-                                {
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                }
-                            </td>
-                        </tr>
-                    }
+    <tr>
+        <td class="col-sm-8 col-md-6">
+            <div class="media">
+                <a class="pull-left" asp-controller="Products" asp-action="ById" asp-route-id="@product.Id"><img src="@product.Image" style="width: 82px; height: 82px;"></a>
+                <div class="media-body" style="padding-left: 16px">
+                    <h5><a asp-controller="Products" asp-action="ById" asp-route-id="@product.Id" style="font-weight: bold">@product.ManufacturerName @product.Name @product.Model</a></h5>
+                    <span style="font-weight: bold">Status: </span><span class="text-success"><strong>Leaves warehouse in 2 - 3 days</strong></span>
+                </div>
+            </div>
+        </td>
+        <td class="col-sm-1 col-md-1" style="text-align: center">
+            <h6>@product.Quantity</h6>
+        </td>
+        <td class="col-sm-1 col-md-1 text-center"><strong>@product.SinglePrice</strong></td>
+        <td class="col-sm-1 col-md-1 text-center"><strong>@product.TotalPrice</strong></td>
+        <td class="col-sm-1 col-md-1">
+            @using (Html.BeginForm("Remove", "Cart",
+           new { productId = product.Id }, FormMethod.Post))
+            {
+<button type="submit" class="btn btn-danger">Remove</button>}
+        </td>
+    </tr>}
                     <tr>
                         <td> </td>
                         <td> </td>
@@ -81,14 +77,13 @@
                             <h6>
                                 @if (subTotal > 1000)
                                 {
-                                    <strong style="color: mediumseagreen"> Free for orders over 1000 lv.</strong>
-                                }
-                                else
-                                {
-                                    <strong>6.94 lv.</strong>
-                                }
+                <strong style="color: mediumseagreen"> Free for orders over 1000 lv.</strong> }
+            else
+            {
+<strong>6.94 lv.</strong>}
 
-                            </h6></td>
+                            </h6>
+                        </td>
                     </tr>
                     <tr>
                         <td> </td>
@@ -101,12 +96,10 @@
                             <h5>
                                 @if (subTotal > 1000)
                                 {
-                                    <strong>@subTotal</strong>
-                                }
-                                else
-                                {
-                                    <strong>@totalPrice lv.</strong>
-                                }
+                <strong>@subTotal</strong> }
+            else
+            {
+<strong>@totalPrice lv.</strong>}
 
                             </h5>
                         </td>
@@ -117,28 +110,21 @@
                         <td> </td>
                         <td style="width: 300px">
                             <a asp-controller="Products" asp-action="All" class="btn btn-primary" style="width: 200px">Continue Shopping</a>
-                            @*<button type="button" class="btn btn-outline-primary">
-                                Continue Shopping
-                            </button>*@
                         </td>
                         <td>
                             <a asp-controller="Orders" asp-action="OrderForm" class="btn btn-primary" style="color: mediumseagreen;">Checkout</a>
-                            @*<button type="button" class="btn btn-primary" style="color: mediumseagreen; height: 60px">
-                                Checkout
-                            </button>*@
                         </td>
                     </tr>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-}
+</div> }
 else
 {
-    <div >
-    <h2 style="color: purple; text-align: center; padding-top: 20px">Your cart is empty !</h2>
-    <img class="" style="width: auto; height: auto;padding-top: 10px ;padding-left: 340px" src="~/images/Empty cart/Empty_Shopping_Cart_blog.jpg"/>
-    </div>
-}
+<div style="vertical-align:middle; text-align:center">
+    <h2 style="color: purple; padding-top: 30px">Your cart is empty !</h2>
+    <img style="padding-top:30px" src="~/images/Empty cart/Empty_Shopping_Cart_blog.jpg" />
+</div>}
+
 
