@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartProfil.Models;
@@ -19,6 +20,8 @@ namespace SmartProfil.Controllers
             this.cartService = cartService;
             this.userManager = userManager;
         }
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> All()
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -67,17 +70,5 @@ namespace SmartProfil.Controllers
 
             return this.RedirectToAction(nameof(All));
         }
-
-        [HttpPost]
-        public async Task<IActionResult> RemoveAll()
-        {
-            var user = await this.userManager.GetUserAsync(this.User);
-            var currentUserId = user.Id;
-
-            //await this.cartService.RemoveProductByIdAsync(currentUserId, productId);
-
-            return this.RedirectToAction(nameof(All));
-        }
-
     }
 }

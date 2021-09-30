@@ -427,6 +427,35 @@ namespace SmartProfil.Migrations
                     b.ToTable("OrderFormInfo");
                 });
 
+            modelBuilder.Entity("SmartProfil.Models.PreviousOrders", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("PreviousOrders");
+                });
+
             modelBuilder.Entity("SmartProfil.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -631,6 +660,17 @@ namespace SmartProfil.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SmartProfil.Models.PreviousOrders", b =>
+                {
+                    b.HasOne("SmartProfil.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("SmartProfil.Models.Product", b =>
