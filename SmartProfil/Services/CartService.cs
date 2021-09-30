@@ -99,10 +99,9 @@ namespace SmartProfil.Services
             var products = this.GetAllProductsFromCart(userId);
             foreach (var product in products)
             {
-                product.IsDeleted = true;
+                this.db.ProductCarts.Remove(product);
             }
             await this.db.SaveChangesAsync();
         }
-
     }
 }

@@ -19,6 +19,8 @@ namespace SmartProfil.Data
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<PreviousOrders> PreviousOrders { get; set; }
+
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Feedback> Feedbacks { get; set; }
